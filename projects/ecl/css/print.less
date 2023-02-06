@@ -1,0 +1,118 @@
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    body {
+        display: block !important;
+        min-width: 100% !important;
+        .chrome & {
+            -ms-transform: scale(.92,.94);
+            -webkit-transform: scale(.92,.94);
+            transform: scale(.92,.94);
+        }
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    header,
+    footer,
+    button,
+    aside,
+    .device:before,
+    .image .controls {
+        display: none !important;
+    }
+
+    section {
+        padding-right: 0 !important;
+    }
+
+    header,
+    footer {
+        right: 0 !important;
+    }
+
+    aside {
+        width: 0 !important;
+    }
+
+    .layout_print {
+        visibility: visible !important;
+    }
+
+    .image,
+    .label {
+        border: none !important;
+
+        .control-content {
+            &:before {
+                content: none !important;
+            }
+
+            > img {
+//                max-width: 80% !important;
+//                max-height: 80% !important;
+            }
+        }
+    }
+}

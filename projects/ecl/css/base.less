@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+@import "lesshat";
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    border-width: 0;
+    background-color: #3bb3e0;
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    padding: 15px 30px;
+    background-image: linear-gradient(bottom, rgb(44, 160, 202) 0%, rgb(62, 184, 229) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(44, 160, 202) 0%, rgb(62, 184, 229) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(44, 160, 202) 0%, rgb(62, 184, 229) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(44, 160, 202) 0%, rgb(62, 184, 229) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(44, 160, 202) 0%, rgb(62, 184, 229) 100%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(44, 160, 202)), color-stop(1, rgb(62, 184, 229)));
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    .box-shadow(inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999);
+
+    &:hover {
+        background: rgb(82,214,255);
+        background: -moz-linear-gradient(top,  rgb(82,214,255) 0%, rgb(61,191,234) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(82,214,255)), color-stop(100%,rgb(61,191,234)));
+        background: -webkit-linear-gradient(top,  rgb(82,214,255) 0%,rgb(61,191,234) 100%);
+        background: -o-linear-gradient(top,  rgb(82,214,255) 0%,rgb(61,191,234) 100%);
+        background: -ms-linear-gradient(top,  rgb(82,214,255) 0%,rgb(61,191,234) 100%);
+        background: linear-gradient(to bottom,  rgb(82,214,255) 0%,rgb(61,191,234) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52d6ff', endColorstr='#3dbfea',GradientType=0 );
+    }
+
+    &.active,
+    &:active {
+        top: 3px;
+        background-image: linear-gradient(bottom, rgb(62, 184, 229) 0%, rgb(44, 160, 202) 100%);
+        background-image: -o-linear-gradient(bottom, rgb(62, 184, 229) 0%, rgb(44, 160, 202) 100%);
+        background-image: -moz-linear-gradient(bottom, rgb(62, 184, 229) 0%, rgb(44, 160, 202) 100%);
+        background-image: -webkit-linear-gradient(bottom, rgb(62, 184, 229) 0%, rgb(44, 160, 202) 100%);
+        background-image: -ms-linear-gradient(bottom, rgb(62, 184, 229) 0%, rgb(44, 160, 202) 100%);
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(62, 184, 229)), color-stop(1, rgb(44, 160, 202)));
+        .box-shadow(inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999);
+    }
+
+    > span {
+        &:before {
+            vertical-align: bottom;
+        }
+    }
+
+    &:disabled {
+        background-image: none;
+        background-color: #999;
+        .box-shadow(inset 0px 1px 0px #a3a3a3, 0px 5px 0px 0px #757575, 0px 10px 5px #999);
+
+        &.active,
+        &:active {
+            top: 0;
+        }
+    }
+
+    &.green {
+        background: rgb(0, 191, 29);
+        background: -moz-linear-gradient(top, rgb(0, 191, 29) 0%, rgb(0, 171, 26) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(0, 191, 29)), color-stop(100%, rgb(0, 171, 26)));
+        background: -webkit-linear-gradient(top, rgb(0, 191, 29) 0%, rgb(0, 171, 26) 100%);
+        background: -o-linear-gradient(top, rgb(0, 191, 29) 0%, rgb(0, 171, 26) 100%);
+        background: -ms-linear-gradient(top, rgb(0, 191, 29) 0%, rgb(0, 171, 26) 100%);
+        background: linear-gradient(to bottom, rgb(0, 191, 29) 0%, rgb(0, 171, 26) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00bf1d', endColorstr='#00ab1a', GradientType=0);
+        .box-shadow(inset 0px 1px 0px #00ab1a, 0px 5px 0px 0px #007512, 0px 10px 5px #999);
+
+        &:hover {
+            background: rgb(0,236,43);
+            background: -moz-linear-gradient(top,  rgb(0,236,43) 0%, rgb(0,211,38) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(0,236,43)), color-stop(100%,rgb(0,211,38)));
+            background: -webkit-linear-gradient(top,  rgb(0,236,43) 0%,rgb(0,211,38) 100%);
+            background: -o-linear-gradient(top,  rgb(0,236,43) 0%,rgb(0,211,38) 100%);
+            background: -ms-linear-gradient(top,  rgb(0,236,43) 0%,rgb(0,211,38) 100%);
+            background: linear-gradient(to bottom,  rgb(0,236,43) 0%,rgb(0,211,38) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ec2b', endColorstr='#00d326',GradientType=0 );
+        }
+
+        &.active,
+        &:active {
+            background: rgb(0, 171, 26);
+            background: -moz-linear-gradient(top, rgb(0, 171, 26) 0%, rgb(0, 191, 29) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(0, 171, 26)), color-stop(100%, rgb(0, 191, 29)));
+            background: -webkit-linear-gradient(top, rgb(0, 171, 26) 0%, rgb(0, 191, 29) 100%);
+            background: -o-linear-gradient(top, rgb(0, 171, 26) 0%, rgb(0, 191, 29) 100%);
+            background: -ms-linear-gradient(top, rgb(0, 171, 26) 0%, rgb(0, 191, 29) 100%);
+            background: linear-gradient(to bottom, rgb(0, 171, 26) 0%, rgb(0, 191, 29) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ab1a', endColorstr='#00bf1d', GradientType=0);
+            .box-shadow(inset 0px 1px 0px #00ab1a, 0px 2px 0px 0px #007512, 0px 5px 3px #999);
+        }
+    }
+
+    &.red {
+        background: #e60000 !important;
+        .box-shadow(inset 0px 1px 0px #e60000, 0px 5px 0px 0px #910000, 0px 10px 5px #999);
+    }
+}

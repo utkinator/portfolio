@@ -29,7 +29,7 @@
         (t.o = function(e, t) {
             return Object.prototype.hasOwnProperty.call(e, t);
         }),
-        (t.p = '/projects/weather/'),
+        (t.p = '/portfolio/projects/weather/'),
         t((t.s = 8));
 })([
     function(e, t, n) {
@@ -8506,7 +8506,7 @@
                 )
                     return;
                 window.addEventListener('load', function() {
-                    var e = '/projects/weather/service-worker.js';
+                    var e = '/portfolio/projects/weather/service-worker.js';
                     i
                         ? (a(e),
                           navigator.serviceWorker.ready.then(function() {

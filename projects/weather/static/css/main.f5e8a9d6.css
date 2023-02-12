@@ -54,16 +54,16 @@
  */
 @font-face {
     font-family: weathericons;
-    src: url(/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot);
-    src: url(/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot?#iefix)
+    src: url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot);
+    src: url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot?#iefix)
             format('embedded-opentype'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.1cd48d78.woff2)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.1cd48d78.woff2)
             format('woff2'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.8cac70eb.woff)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.8cac70eb.woff)
             format('woff'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.4618f0de.ttf)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.4618f0de.ttf)
             format('truetype'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.ecaf8b48.svg#weather_iconsregular)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.ecaf8b48.svg#weather_iconsregular)
             format('svg');
     font-weight: 400;
     font-style: normal;
@@ -1639,16 +1639,16 @@
 }
 @font-face {
     font-family: weathericons;
-    src: url(/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot);
-    src: url(/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot?#iefix)
+    src: url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot);
+    src: url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.4b658767.eot?#iefix)
             format('embedded-opentype'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.1cd48d78.woff2)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.1cd48d78.woff2)
             format('woff2'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.8cac70eb.woff)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.8cac70eb.woff)
             format('woff'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.4618f0de.ttf)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.4618f0de.ttf)
             format('truetype'),
-        url(/projects/weather/static/media/weathericons-regular-webfont.ecaf8b48.svg#weather_iconsregular)
+        url(/portfolio/projects/weather/static/media/weathericons-regular-webfont.ecaf8b48.svg#weather_iconsregular)
             format('svg');
     font-weight: 400;
     font-style: normal;
@@ -5642,7 +5642,7 @@ html {
 .code-230,
 .code-231,
 .code-232 {
-    background-image: url(/projects/weather/static/media/thunderstorm-lightning.0d1b3d6a.png);
+    background-image: url(/portfolio/projects/weather/static/media/thunderstorm-lightning.0d1b3d6a.png);
 }
 .code-300,
 .code-301,
@@ -5667,12 +5667,12 @@ html {
 .code-616,
 .code-620,
 .code-701 {
-    background-image: url(/projects/weather/static/media/rain.05fe7ffe.png);
+    background-image: url(/portfolio/projects/weather/static/media/rain.05fe7ffe.png);
 }
 .code-531,
 .code-901,
 .code-902 {
-    background-image: url(/projects/weather/static/media/storm.3e588a0b.png);
+    background-image: url(/portfolio/projects/weather/static/media/storm.3e588a0b.png);
     background-color: var(--night-color) !important;
 }
 .code-600,
@@ -5681,42 +5681,42 @@ html {
 .code-621,
 .code-622,
 .code-903 {
-    background-image: url(/projects/weather/static/media/snow.82d10435.png);
+    background-image: url(/portfolio/projects/weather/static/media/snow.82d10435.png);
 }
 .code-711,
 .code-721,
 .code-741 {
-    background-image: url(/projects/weather/static/media/fog.8b5e8cef.png);
+    background-image: url(/portfolio/projects/weather/static/media/fog.8b5e8cef.png);
 }
 .code-731,
 .code-761,
 .code-762 {
-    background-image: url(/projects/weather/static/media/dust.da4b5fdf.png);
+    background-image: url(/portfolio/projects/weather/static/media/dust.da4b5fdf.png);
 }
 .code-771,
 .code-801,
 .code-802,
 .code-803,
 .code-804 {
-    background-image: url(/projects/weather/static/media/clouds.58fa4a2a.png);
+    background-image: url(/portfolio/projects/weather/static/media/clouds.58fa4a2a.png);
 }
 .code-781,
 .code-900 {
-    background-image: url(/projects/weather/static/media/tornado.c6da4fd6.png);
+    background-image: url(/portfolio/projects/weather/static/media/tornado.c6da4fd6.png);
     background-color: var(--night-color) !important;
 }
 .code-800 {
-    background-image: url(/projects/weather/static/media/sunny.0b797262.png);
+    background-image: url(/portfolio/projects/weather/static/media/sunny.0b797262.png);
 }
 .code-904 {
-    background-image: url(/projects/weather/static/media/hot.32831bf7.png);
+    background-image: url(/portfolio/projects/weather/static/media/hot.32831bf7.png);
 }
 .code-905,
 .code-957 {
-    background-image: url(/projects/weather/static/media/wind.1ac706af.png);
+    background-image: url(/portfolio/projects/weather/static/media/wind.1ac706af.png);
 }
 .code-906 {
-    background-image: url(/projects/weather/static/media/hail.63af1bed.png);
+    background-image: url(/portfolio/projects/weather/static/media/hail.63af1bed.png);
 }
 @media (max-width: 500px) {
     .today .other {

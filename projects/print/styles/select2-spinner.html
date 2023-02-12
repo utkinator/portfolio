@@ -1,0 +1,84 @@
+		
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sida under uppbyggnad</title>
+
+<link rel="stylesheet" type="text/css" href="http://www.handi.se/wp-content/plugins/maintenance/lib/style.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+			<style type="text/css"> 
+				body { background: 
+					#fff 
+						url(http://www.handi.se/wp-content/plugins/maintenance/lib/images/theme-bg-default.jpg) repeat-x scroll 0 0;}
+								
+			</style>
+  
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".username").focus(function() 	{ $(".user-icon").css("left","-49px");});
+	$(".username").blur(function()   	{ $(".user-icon").css("left","0px"); });
+	$(".password").focus(function() 	{ $(".pass-icon").css("left","-49px");});
+	$(".password").blur(function()   	{ $(".pass-icon").css("left","0px");});
+});
+		   
+</script>
+<script type="text/javascript" src="http://www.handi.se/wp-content/plugins/maintenance/lib/js/jquery.placeholder.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('input[placeholder]').placeholder();
+});
+
+$(window).load(function() {
+	var vWrapWidth  = -$("#wrapper").width()/2;
+	var vWrapHeight = -$("#wrapper").height()/2;
+	       $("#wrapper").css({'margin-left' : vWrapWidth});
+		   $("#wrapper").css({'margin-top' : vWrapHeight});
+		   
+	var vCompWidth    = -$(".company a img").width()/2;
+	       $(".company a img").css({'margin-left' : vCompWidth});
+});
+	
+</script>
+</head>
+<body>	
+        <div id="wrapper">
+				<div class="company">
+					<a href="http://www.handi.se"><img src="http://www.handi.se/wp-content/uploads/maintenance/logo.png" alt="logo"/></a>
+				</div>
+
+				<form name="loginform" id="loginform" class="login-form" method="post">
+
+				<div class="header">
+						<h1>Logga in</h1>
+						<span>Logga in för att besöka hemsidan</span>
+				</div>
+
+				<div class="content">
+                    <div class="user-icon"></div>
+					<div class="pass-icon"></div>
+                    <div class="inputs">
+                        <input type="text" name="log" id="log" value="" size="20"  class="input username" placeholder="Username"/>
+                        <input type="password" name="pwd" id="login_password" value="" size="20"  class="input password" placeholder="Password" />
+                    </div>
+                </div>
+
+                                
+                <script type="text/javascript">
+					$(".username").focus();
+					$(".user-icon").css("left","-49px");
+				</script>                             
+                             
+				<div class="footer">
+					<input type="submit" class="button" name="submit" id="submit" value="Sign In" tabindex="4" />
+					<input type="hidden" name="redirect_to" value="http://www.handi.se" />
+				</div>
+
+                </form>
+	</div> <!-- end wrapper -->		
+</body>
+</html>

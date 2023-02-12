@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Проект "Сад Сервис" - О компании</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="title" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+	<!--[if lte IE 7]><link rel="stylesheet" href="css/style_ie.css" type="text/css" media="screen" /><![endif]-->
+    
+    <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery.fancybox-1.3.1.pack.js" type="text/javascript"></script>
+    <script src="js/scripts.js" type="text/javascript"></script>
+    <!--[if IE 6]>
+        <script type="text/javascript" src="js/DD_belatedPNG-min.js"></script>
+        <script type="text/javascript">
+          DD_belatedPNG.fix('*');
+        </script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div id="wrapper" class="w-inner">
+    <div id="header"><!-- Header -->
+        <a href="#">
+            <img src="img/logo_2.png" alt="Сад Сервис" class="logo"/>
+        </a>
+        <div class="tm-inner clearfix">
+            <div class="ti-l"> </div>
+            <ul class="clearfix">
+                <li>
+                    <a href="#" class="active">
+                        <span>О компании</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Услуги</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Растения</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Фотогалерея</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Статьи</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Спецпредложения</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Контактная информация</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="ti-r"> </div>
+        </div>
+	</div><!-- END Header -->
+
+	<div id="content"><!-- Content -->
+        <ul class="c_wrapper clearfix">
+            <li class="cw_1">
+                <div class="pres-block">
+                    <img src="img/del_pres.png" alt="Подарок"/>
+                    <h2><ins>—</ins> Выбираете подарок для любимой тёщи?</h2>
+                    <p>У нас в отделе <a href="#">подарков</a> вы найдете самый широкий выбор катусов во всей Одессе!</p>
+                </div>
+            </li>
+            <li class="cw_2">
+                <h1>О нашей компании</h1>
+
+                <span class="B_crumbBox"><!-- Breadcrumbs -->
+                    <span class="B_firstCrumb">
+                        <a title="Главная" href="#" class="B_homeCrumb">Главная</a>
+                    </span>
+                    »
+                    <a href="#" class="B_crumb" title="Какая-то еще">Какая-то еще</a>
+                    »
+                    <span class="B_lastCrumb">
+                        <span class="B_currentCrumb">О нашей компании</span>
+                    </span>
+                </span><br/><!-- END Breadcrumbs -->
+
+                <p class="p-intro i">Если вы решили сделать ваш дом более комфортным и уютным, нет способа проще, чем обзавестись комнатными растениями. Красивый горшок с ярким цветком или миниатюрное цитрусовое деревце на вашем подоконнике порадуют глаз и принесут вам хорошее настроение.</p>
+
+                <div class="b-green rounded">
+                    <p>Подбирать растения и ухаживать за ними - это целое искусство и перед тем, как купить домой комнатное растение, нужно узнать все нюансы. Магазин "Сад Сервис" в Одессе — это проект, где вы можете почитать о тонкостях подбора растений для дома, обсудить различные растения со знатоками. Это проект, где вы можете почитать о тонкостях подбора растений для дома, <a href="#">обсудить</a> различные растения со знатоками. </p>
+                </div>
+
+                <p>К вашим услугам также <a href="#">цветочный форум</a>, где вы можете поделиться мнениями о растениях, которые растут у вас дома или в саду, рассказать о своих наблюдениях и особенностях цветов. А приехав в наш магазин, вы увидите самый широкий ассортимент в Одессе, и не только — мы поможем вам благоустроить ваш участок по последнему слову науки и техники! А приехав в наш магазин, вы увидите самый широкий ассортимент в Одессе, и не только — мы поможем вам благоустроить ваш участок по последнему слову науки и техники!</p>
+                <p>К вашим услугам также цветочный форум, где вы можете поделиться мнениями о растениях, которые растут у вас дома или в саду, рассказать о своих наблюдениях и особенностях цветов. </p>
+
+                <h2>Чем мы хороши</h2>    
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        /* Carousel on Inner Page */
+                        $(window).bind('resize', function() {
+                            set_sizes();
+                            correct_left();
+                        });
+                        carousel = $('div.carousel ul.elements');
+                        carousel_item = $('div.carousel ul.elements li.c_item');
+                        $('div.carousel ul.elements li.c_item:first').addClass('curent');
+
+                        for(var i=0; i<carousel_item.length; i++){
+                            carousel_item.eq(i).attr('rel',i);
+                        }
+
+                        function set_sizes(){
+                            win_width = $('#wrapper').width(); // Window Width
+                            el_width = win_width/3.4; // Carousel Element Width (50%)
+                            el_length = $('li.c_item').length; // Carousel Element Length
+                            c_width = el_length * el_width; // Carousel Width
+                            carousel.width(c_width);
+                            carousel_item.width(el_width);
+                        }
+                        function correct_left(){
+                            cur_num = $('li.curent').attr('rel');
+                            if(cur_num > 0){
+                                c_left = cur_num * el_width;
+                                carousel.css('left',-c_left+'px');
+                            }
+                            else {return false;}
+                        }
+                        function move_left(){
+                            if($('.c_arrow_right a').hasClass('finish')){return false;}
+                            else{
+                                $('.c_arrow_left a').removeClass('finish');
+                                cur_left_temp = carousel.css('left');
+                                cur_left = parseInt(cur_left_temp.replace('px',''));
+                                carousel.stop().animate({left:cur_left - el_width + 'px'});
+                                $('li.curent').next('li').addClass('curent').prev('li').removeClass('curent');
+                            }
+                        }
+                        function move_right(){
+                            if($('.c_arrow_left a').hasClass('finish')){return false;}
+                            else{
+                                $('.c_arrow_right a').removeClass('finish');
+                                cur_left_temp = carousel.css('left');
+                                cur_left = parseInt(cur_left_temp.replace('px',''));
+                                carousel.stop().animate({left:cur_left + el_width + 'px'});
+                                $('li.curent').prev('li').addClass('curent').next('li').removeClass('curent');
+                            }
+                        }
+                        function hide_arrow(){
+                            if($('div.carousel ul.elements li.c_item:first').hasClass('curent')){$('.c_arrow_left a').css({'background-position':'0 0'}).addClass('finish');}
+                            else{$('.c_arrow_left a').css({'background-position':'0 -80px'});}
+                            if($('div.carousel ul.elements li.c_item:last').prev().hasClass('curent')){$('.c_arrow_right a').css({'background-position':'-30px 0'}).addClass('finish');}
+                            else{$('.c_arrow_right a').css({'background-position':'-30px -80px'});}
+                        }
+                        $('.c_arrow_right').click(function(){
+                    //        $(this).stop().animate({top:-2000+'px'}, 0).delay(500).animate({top:0}, 0);
+                            set_sizes();
+                            move_left();
+                            hide_arrow();
+                        });
+                        $('.c_arrow_left').click(function(){
+                    //        $(this).stop().animate({top:-2000+'px'}, 0).delay(500).animate({top:0}, 0);
+                            set_sizes();
+                            move_right();
+                            hide_arrow();
+                        });
+                        set_sizes();
+                        hide_arrow();
+                        $('.c_arrow_left a, .c_arrow_right a').click(function(){return false;});
+                    });
+                </script>
+                <div class="mini-carousel">
+                    <div class="c_arrow_left"><a> </a></div>
+                    <div class="c_arrow_right"><a> </a></div>
+                    <div class="carousel"><!-- Mini Horizontal Carousel -->
+                        <ul class="elements clearfix">
+                            <li class="c_item">
+                                <a href="#" title="Ландшафтный дизайн">
+                                    <span class="title">Ландшафтный дизайн</span>
+                                    <img src="img/pen.png" alt="Ландшафтный дизайн"/>
+                                    <span>Это особый вид деятельности, направленный на создание искусственной среды для растений</span>
+                                </a>
+                            </li>
+                            <li class="c_item">
+                                <a href="#" title="Системы полива">
+                                    <span class="title">Системы полива</span>
+                                    <img src="img/vodokachka.png" alt="Системы полива"/>
+                                    <span>Автоматический полив выполнит работу по уходу за участком незаметно и эффективно</span>
+                                </a>
+                            </li>
+                            <li class="c_item">
+                                <a href="#" title="Ландшафтный дизайн">
+                                    <span class="title">Ландшафтный дизайн</span>
+                                    <img src="img/pen.png" alt="Ландшафтный дизайн"/>
+                                    <span>Это особый вид деятельности, направленный на создание искусственной среды для растений Это особый вид деятельности.</span>
+                                </a>
+                            </li>
+                            <li class="c_item">
+                                <a href="#" title="Системы полива">
+                                    <span class="title">Системы полива</span>
+                                    <img src="img/vodokachka.png" alt="Системы полива"/>
+                                    <span>Автоматический полив выполнит работу по уходу за участком незаметно и эффективно</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- END Mini Horizontal Carousel -->        
+                </div>
+            </li>
+        </ul>
+	</div><!-- END Content -->
+
+	<div id="footer"><!-- Footer -->
+        <address>
+            <span>
+                тел./факс:
+                <img src="img/phone.png" alt="701 68 69"/>
+            </span>
+            <span>
+                <strong>ул. Дача Ковалевского, строение 117-а</strong>
+                <a href="#"><ins>как проехать</ins></a>
+            </span>
+        </address>
+        <ul class="b-menu clearfix">
+            <li>
+                <a href="#"><span>О компании</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Услуги</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Растения</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Фотогалерея</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Статьи</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Спецпредложения</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Контактная информация</span></a>
+            </li>
+        </ul>
+        <a href="http://cooper-design.com.ua" class="cooper ver2">
+            <span>разработка сайта</span>
+        </a>
+	</div><!-- END Footer -->
+
+</div>
+
+</body>
+</html>

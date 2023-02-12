@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+<title>OpenLit</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="Keywords" content="" />
+	<meta name="Description" content="" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!--[if IE 6]><link href="css/ie6.css" rel="stylesheet" type="text/css" ><![endif]-->
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript">
+        /* Базовые установки */
+        var letters_per_page = 3500; // Количество знаков на страницу
+        var rows_per_page = 50; // Количество строк на страницу
+        var percents = 0.1; // Надбавка за срочность
+        var min_proza = 1000; // Минимальный заказ для прозы
+        var min_stih = 500; // Минимальный заказ для стиха
+
+        /* Для авторов */
+        var page_cost_a = 200; // Стоимость одной страницы
+        var simbol_a = page_cost_a / letters_per_page; // Вычисляем стоимость одного символа
+        var row_a = page_cost_a / rows_per_page; // Вычисляем стоимость одной строки
+
+        /* Для издательств */
+        var page_cost_i = 400; // Стоимость одной страницы
+        var simbol_i = page_cost_i / letters_per_page; // Вычисляем стоимость одного символа
+        var row_i = page_cost_i / rows_per_page; // Вычисляем стоимость одной строки
+
+        /* Для рекламодателей */
+        var page_cost_r = 100; // Стоимость одной страницы
+        var simbol_r = page_cost_r / letters_per_page; // Вычисляем стоимость одного символа
+        var row_r = page_cost_r / rows_per_page; // Вычисляем стоимость одной строки
+
+        function calculate(){
+            var total = 0; // Полная стоимость работы
+            var total_services = 0; // Сумма за выбранные услуги
+            var total_proza = 0; // Сумма за прозу
+            var total_stih = 0; // Сумма за стих
+            var quick = 0; // За срочность
+            var services = $(".service_price:checked").length; // Количество услуг, выбранных пользователем
+            for(var i=0; i<services; i++ ){
+                total_services += parseInt($(".service_price").eq(i).val()); // Вычисляем сумму всех услуг
+            }
+            var proza_quont = $(".l-q-text").val(); // Получаем кол-во знаков
+            var stih_quont = $(".l-q-stih").val(); // Получаем кол-во строк
+            var payment = $(".payment_type:checked").val(); // Получаем способ оплаты и соотв. коофициент
+
+            if($("#for_who_1").hasClass("active")){
+                total_proza = proza_quont * simbol_a; // Вычисляем Сумму за прозу
+                total_stih = stih_quont * row_a; // Вычисляем Сумму за стих
+
+                if(total_proza < min_proza && total_proza != 0){total_proza = min_proza;}
+                if(total_stih < min_stih && total_stih != 0){total_stih = min_stih;}
+
+                if($("#srochno").hasClass("checked")){
+                    quick = ((total_services + total_proza + total_stih) * payment) * percents;
+                }
+                else if($(".srochno").hasClass("unchecked")){quick = 0;}
+                total = ((total_services + total_proza + total_stih) * payment) + quick; // Вычисляем полную стоимость работы
+
+                $(".c-text").val(total); // Показываем полную стоимость работы
+            }
+            if($("#for_who_2").hasClass("active")){
+
+                total_proza = proza_quont * simbol_i; // Вычисляем Сумму за прозу
+                total_stih = stih_quont * row_i; // Вычисляем Сумму за стих
+
+                if(total_proza < min_proza && total_proza != 0){total_proza = min_proza;}
+                if(total_stih < min_stih && total_stih != 0){total_stih = min_stih;}
+
+                if($("#srochno").hasClass("checked")){
+                    quick = ((total_services + total_proza + total_stih) * payment) * percents;
+                }
+                else if($(".srochno").hasClass("unchecked")){quick = 0;}
+                total = ((total_services + total_proza + total_stih) * payment) + quick; // Вычисляем полную стоимость работы
+                $(".c-text").val(total); // Показываем полную стоимость работы
+            }
+            if($("#for_who_3").hasClass("active")){
+
+                total_proza = proza_quont * simbol_r; // Вычисляем Сумму за прозу
+                total_stih = stih_quont * row_r; // Вычисляем Сумму за стих
+
+                if(total_proza < min_proza && total_proza != 0){total_proza = min_proza;}
+                if(total_stih < min_stih && total_stih != 0){total_stih = min_stih;}
+
+                if($("#srochno").hasClass("checked")){
+                    quick = ((total_services + total_proza + total_stih) * payment) * percents;
+                }
+                else if($(".srochno").hasClass("unchecked")){quick = 0;}
+                total = ((total_services + total_proza + total_stih) * payment) + quick; // Вычисляем полную стоимость работы
+                $(".c-text").val(total); // Показываем полную стоимость работы
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div class="gradient_top"> </div>
+    <div id="wrapper"><!-- Main Wrapper -->
+        <div id="top_book_review" class="line"><!-- Book Reviev At The Top Of The Site -->
+            <img src="img/i/icon_top_book.png" alt="Заказать книгу" />Темплар Ричард, Правила менеджмента: Как ведут себя успешные руководители. <a href="#">Купить книгу на Озоне.</a>
+        </div><!-- END Book Reviev At The Top Of The Site -->
+        <div id="header" class="line"><!-- Header -->
+            <a href="#" class="logo"><img src="img/header/logo.png" alt="Открытая литература" /></a>
+            <div class="reg-form"><!-- Registration Form -->
+                <div class="reg-form-l"> </div>
+                <div class="reg-form-c">
+                    <a href="#" class="reg-form-login">Войти</a>
+                    <img src="img/content/reg-f-separator.gif" alt="|" />
+                    <a href="#" class="reg-form-register">Зарегистрироться</a>
+                </div>
+                <div class="reg-form-r"> </div>
+            </div><!-- END Registration Form -->
+            <div class="popup-reg-form"><!-- Popup Registration Form -->
+                <a href="#" class="p-f-close-link">Закрыть</a>
+                <form action="#" method="post">
+                    <div>
+                        <input type="text" class="p-f-login" />
+                        <input type="submit" class="p-f-enter-btn" value=" " />
+                        <input type="password" class="p-f-pass" />
+                    </div>
+                </form>
+            </div><!-- END Popup Registration Form -->
+            <ul class="brands"><!-- Brands List -->
+                <li><a href="#"><img src="img/header/brand_1.gif" alt="brand_1" /></a></li>
+                <li><a href="#"><img src="img/header/brand_2.gif" alt="brand_2" /></a></li>
+                <li><a href="#"><img src="img/header/brand_3.gif" alt="brand_3" /></a></li>
+                <li><a href="#"><img src="img/header/brand_4.gif" alt="brand_4" /></a></li>
+                <li><a href="#"><img src="img/header/brand_5.gif" alt="brand_5" /></a></li>
+                <li><a href="#"><img src="img/header/brand_6.gif" alt="brand_6" /></a></li>
+                <li><a href="#"><img src="img/header/brand_7.gif" alt="brand_7" /></a></li>
+            </ul><!-- END Brands List -->
+        </div><!-- END Header -->
+        <div id="content" class="line"><!-- Content -->
+            <div id="sidebar_left" class="item column"><!-- SideBar Left -->
+                <ul class="v_menu"><!-- Vertical Menu -->
+                    <li><a href="#" class="act">Главная страница</a></li>
+                    <li><a href="#">Услуги и цены</a></li>
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Эксперты</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Реклама на сайте</a></li>
+                    <li><a href="#">Новости</a><a href="#" class="rss"><img src="img/content/icon_rss.gif" alt="rss" /></a></li>
+                    <li><a href="#">Авторы в сети</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                    <li><a href="#">Писателю на заметку</a><a href="#" class="rss"><img src="img/content/icon_rss.gif" alt="rss" /></a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Магазин</a></li>
+                </ul><!-- END Vertical Menu -->
+
+                <a href="#" class="banner_2"><img src="img/content/banner_2.gif" alt="баннер" /></a>
+            </div><!-- END SideBar Left -->
+            <div id="maincontent" class="item column"><!--Maincontent -->
+                <div class="main-content"><!-- Sap-content -->
+                    <div class="content_page"><!-- Simple Content Page With Images -->
+                        <h1>Оформление заказа</h1>
+                        
+                        <ul class="for_who clearfix">
+                            <li id="for_who_1"><a href="order.html">для авторов</a></li>
+                            <li id="for_who_2"><a href="order_1.html">для издательств</a></li>
+                            <li id="for_who_3" class="active"><a href="order_2.html" class="active">для рекламодателей</a></li>
+                        </ul>
+
+                        <form action="#" method="post">
+                            <ul class="service_choise clearfix">
+                                <li><span class="s-c-title">Выберите услугу</span></li>
+                                <li><input type="checkbox" id="service_1" class="service_price" value="200"/><span class="s-c-label">Рецензирование произведений</span></li>
+                                <li><input type="checkbox" id="service_2" class="service_price" value="300"/><span class="s-c-label">Срочное рецензирование  произведений</span></li>
+                                <li><input type="checkbox" id="service_3" class="service_price" value="30"/><span class="s-c-label">Редактирование произведения</span></li>
+                                <li><input type="checkbox" id="service_4" class="service_price" value="40"/><span class="s-c-label">Корректура произведения</span></li>
+                                <li><input type="checkbox" id="service_5" class="service_price" value="50"/><span class="s-c-label">Перевод на другой язык</span></li>
+                                <li><input type="checkbox" id="service_6" class="service_price" value="60"/><span class="s-c-label">Литературное агентство</span></li>
+                                <li><input type="checkbox" id="service_7" class="service_price" value="70"/><span class="s-c-label">Маркетинг</span></li>
+                                <li><input type="checkbox" id="service_8" class="service_price" value="80"/><span class="s-c-label">Реклама на сайте «Открытой литературы»</span></li>
+                            </ul>
+
+                            <div class="upload_file"><!-- Upload Your Text or Link -->
+                                <span class="s-c-title">Загрузите ваше произведение</span>
+                                <table class=""><!--  -->
+                                    <tr>
+                                        <td><img class="u-f-img" src="img/content/icon_choose_file.gif" alt="выберите файл" /></td>
+                                        <td><input type="file" value="выберите файл на компьютере" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img class="u-f-img" src="img/content/icon_input_link.gif" alt="введите ссылку" /></td>
+                                        <td><input type="text" class="u-f-input"/></td>
+                                    </tr>
+                                </table><!-- END  -->
+                            </div><!-- END Upload Your Text or Link -->
+
+                            <div class="enter_comment"><!-- Enter Comment Area -->
+                                <span class="s-c-title">Напишите комментарий</span>
+                                <textarea rows="10" cols="5" class="e-c-area"></textarea>
+                            </div><!-- END Enter Comment Area -->
+
+                            <ul class="payment_choise clearfix">
+                                <li><span class="s-c-title">Укажите способ оплаты</span></li>
+                                <li><input type="radio" name="payment" class="payment_type" value="1"/><span class="p-c-label">Наличный расчет</span></li>
+                                <li><input type="radio" name="payment" class="payment_type" value="1.1" checked="checked"/><span class="p-c-label">Банковская карта</span></li>
+                                <li><input type="radio" name="payment" class="payment_type" value="1.5"/><span class="p-c-label">Яндекс.Деньги</span></li>
+                                <li><input type="radio" name="payment" class="payment_type" value="1.6"/><span class="p-c-label">WebMoney</span></li>
+                            </ul>
+
+                            <div class="text_type"><!-- Text Type -->
+                                <span class="s-c-title">Тип произведения?</span>
+                                <select id="text_type">
+                                    <option class="t-t-proza" selected="selected">Проза</option>
+                                    <option class="t-t-stih">Стих</option>
+                                </select>
+                            </div><!-- END Text Type -->
+
+                            <div class="letters_quont"><!-- Enter Comment Area -->
+                                <span class="s-c-title">Сколько вешать в буквах?</span>
+                                <span class="s-c-label">Количество знаков в произведении:</span>
+                                <input type="text" class="l-q-text"/>
+                            </div><!-- END Enter Comment Area -->
+
+                             <div class="strok_quont"><!-- Enter Comment Area -->
+                                <span class="s-c-title">Сколько вешать в строчках?</span>
+                                <span class="s-c-label">Количество строк в произведении:</span>
+                                <input type="text" class="l-q-stih"/>
+                            </div><!-- END Enter Comment Area -->
+
+                            <div class="captcha"><!-- Captcha -->
+                                <span class="s-c-title">Мы уверены, что вы не бот</span>
+                                <img src="img/content/catcha.jpg" alt="каптча" class="captcha" />
+                                <span class="s-c-label">Впишите символы, которые вы видите на картинке</span>
+                                <input type="text" class="l-q-text"/>
+                            </div><!-- END Captcha -->
+
+                            <div class="cost"><!-- Cost -->
+                                <span class="s-c-title">Вам срочно? (+10% от стоимости заказа)</span>
+                                <input type="checkbox" id="srochno" class="unchecked"/><span class="s-c-label">Да, мне очень срочно</span>
+                            </div><!-- END Cost -->
+
+                            <div class="cost"><!-- Cost -->
+                                <span class="s-c-title">Стоимость работы</span>
+                                <button type="button" class="btn_calc" onclick="calculate();">Посчитать</button>
+                                <input type="text" class="c-text"/><img src="img/content/icon_rub.gif" alt="рубль" class="rub"/>
+                            </div><!-- END Cost -->
+
+                            <div class="join_wrapper clearfix"><!-- Join Wrapper -->
+                                <div class="j_left"> </div>
+                                <div class="j_body">
+                                    <a href="#"><img alt="Оформить заказ" src="img/content/btn_order.gif" class="join_img"/></a>
+                                </div>
+                                <div class="j_right"> </div>
+                            </div>
+
+                        </form>
+
+                    </div><!-- END Simple Content Page With Images -->
+
+                    <a href="#" class="totem"><img src="img/footer/totem.png" alt="Тотем писателя" /></a>
+
+                </div><!-- END Sap-content -->
+            </div><!-- END Maincontent -->
+            <div id="sidebar_right" class="item column">
+
+                <div class="object_1 clearfix"><!-- Orange Article -->
+                    <div class="title1"><!-- Orange Article Title -->
+                    </div><!-- END Orange Article Title -->
+                    <span class="phone_naumber">+7 (495) 222-33-44</span>
+                    <a href="mailto:mail@company.ru" class="mail">mail@company.ru</a>
+                </div><!-- END Orange Article -->
+                <div class="object_1 clearfix"><!-- Orange Article -->
+                    <div class="title2"><!-- Orange Article Title -->
+                    </div><!-- END Orange Article Title -->
+                    <a href="#" class="o-l">Заказать рецензию</a>
+                    <a href="#" class="o-l">Связаться с менеджером</a>
+                    <div class="user_agreement clearfix"><!-- User Agreement -->
+                        <a href="#"><img src="img/content/icon_pdf.gif" alt="user agreement" class="img_agr"/></a>
+                        <a href="#" class="u-l">Пользовательское соглашение</a><br /><span>pdf, 156 Kb</span>
+                    </div><!-- END User Agreement -->
+                </div><!-- END Orange Article -->
+                <div class="object_1 clearfix"><!-- Orange Article -->
+                    <div class="title3"><!-- Orange Article Title -->
+                        <a href="#">Наши эксперты</a>
+                    </div><!-- END Orange Article Title -->
+                    <img src="img/content/pic2.jpg" class="img_expert" alt="експерт" />
+                    <a href="#" class="exp_name">Вениамин Стихоплетов</a>
+                    <span class="exp_text">рецензент басен и присказок</span>
+                </div><!-- END Orange Article -->
+                <div class="object_1 clearfix"><!-- Orange Article -->
+                    <div class="title4"><!-- Orange Article Title -->
+                        <a href="#">Ньюсблок</a>
+                    </div><!-- END Orange Article Title -->
+                    <ul class="news_list">
+                        <li><a href="#">Евкуров пригласил правозащитников к мониторингу борьбы с боевиками в Ингушетии</a></li>
+                        <li><a href="#">Причиной отравления детей в Джанкое стал кефир</a></li>
+                        <li><a href="#">В ДТП в Крыму погибли трое россиян</a></li>
+                    </ul>
+                </div><!-- END Orange Article -->
+                <div class="object_1 clearfix"><!-- Orange Article -->
+                    <div class="title"><!-- Orange Article Title -->
+                        <a href="#">Мы в социальных сетях</a>
+                    </div><!-- END Orange Article Title -->
+                    <ul class="soc_list">
+                        <li><a href="#">Живой журнал</a></li>
+                        <li><a href="#">Мертвый журнал</a></li>
+                        <li><a href="#">Мой круг</a></li>
+                        <li><a href="#">Я.ру</a></li>
+                        <li><a href="#">Вконтакте</a></li>
+                    </ul>
+                </div><!-- END Orange Article -->
+            </div>
+            <a href="#" class="totem"><img src="img/footer/totem.png" alt="Тотем писателя" /></a>
+        </div><!-- END Content -->
+        <div id="footer" class="line"><!-- Footer -->
+            <div class="footer-content"><!-- Footer Content -->
+                <span class="copyright">© «Опенлит», 2009</span><br />
+                <a href="#" class="site_map">Карта сайта</a>
+
+                <div class="contacts"><!-- Contacts Block -->
+                    <ul class="contacts_list"><!-- Contacts List -->
+                        <li><a href="#">ICQ: 213 734 364</a></li>
+                        <li><a href="#">Skype: Rizhaya_Sonya</a></li>
+                        <li><a href="#">E-mail: openlit@openlit.ru</a></li>
+                        <li><a href="#">(495) 352-45-62</a></li>
+                    </ul><!-- END Contacts List -->
+                </div><!-- END Contacts Block -->
+
+                <a href="#" class="totem_link">Тотем писателя</a>
+
+            </div><!-- END Footer Content -->
+        </div><!-- END Footer -->
+    </div><!-- END Main Wrapper -->
+    <div class="gradient_bottom"> </div>
+</body>
+</html>

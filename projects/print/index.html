@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Abilia print it</title>
+        <meta name="description" content="Abilia print it">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" href="styles/main.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="styles/print.css" media="print"/>
+    </head>
+    <body class="loading" data-bind="css: { loading: processing }">
+        <header>
+            <a class="logo" target="_blank" href="http://www.abilia.se/" title="Abilia Sverige">Abilia Sverige</a>
+        </header>
+        <section>
+            <div class="controls">
+                <label for="3cm" class="size-3">
+                    <input type="radio" id="3cm" name="image_size" value="layout-3" data-bind="checked: layoutView" checked/>
+                    <span>3x3 cm</span>
+                </label>
+                <label for="5cm" class="size-5">
+                    <input type="radio" id="5cm" name="image_size" value="layout-5" data-bind="checked: layoutView"/>
+                    <span>5x5 cm</span>
+                </label>
+            </div>
+
+            <div class="content" data-bind="template: { name: 'page-template', foreach: pages }"></div>
+        </section>
+        <aside>
+            <header>
+                <div class="controls">
+                    <div class="view">
+                        <label for="small_view" class="small_view">
+                            <input type="radio" id="small_view" name="view_size" value="small" data-bind="checked: libView" />
+                            <span></span>
+                        </label>
+                        <label for="big_view" class="big_view">
+                            <input type="radio" id="big_view" name="view_size" value="large" data-bind="checked: libView"/>
+                            <span></span>
+                        </label>
+                        <label for="list_view" class="list_view">
+                            <input type="radio" id="list_view" value="list" data-bind="checked: libView" name="view_size"/>
+                            <span></span>
+                        </label>
+                    </div>
+                    <button class="btn btn-sort" data-bind="click: toggleSorting, css: { active: sortOrder() === 'alphabetical' }, enable: imagesLib().length">ABC</button>
+                    <button class="btn btn-select-all" data-bind="click: toggleImagesSelection, text: isAllSelected() ? 'Unselect All' : 'Select All', enable: imagesLib().length"></button>
+                </div>
+                <div class="controls">
+                    <label for="print-labels" class="checkbox">
+                        <input type="checkbox" id="print-labels" data-bind="checked: printImagesLabel"/>
+                        <span>Print image label</span>
+                    </label>
+
+                    <label for="lang" class="lang">
+                        <select name="lang" id="lang" data-bind="options: langs, optionsText: 'label', optionsValue: 'value', selectedOptions: lang"></select>
+                    </label>
+                </div>
+            </header>
+            <ul class="images" data-bind="template: { name: 'image-template', foreach: sortedImagesLib }, attr: { class: 'images ' + libView() } "></ul>
+        </aside>
+        <footer>
+            <button type="button" class="btn-large" title="Add Page" data-bind="click: addEmptyPage, visible: isNewPageNeeded">
+                <span class="icon-plus"></span>
+            </button>
+            <button type="button" class="btn-large" title="Clear" data-bind="click: fetchImagesLib(false)">
+                <span class="icon-remove"></span>
+            </button>
+            <button type="button" class="btn-large green" onclick="window.print()" title="Print">
+                <span class="icon-print"></span>
+            </button>
+        </footer>
+        <div class="warning">
+            <p>You're using an old version of Internet Explorer which is not fully compatible with "Abilia print it". Please use one of the following modern browsers:</p>
+            <ul class="browsers">
+                <li class="chrome">
+                    <a href="http://www.google.com/chrome" target="_blank">
+                        <span>Google Chrome</span>
+                    </a>
+                </li>
+                <li class="firefox">
+                    <a href="http://www.firefox.com/" target="_blank">
+                        <span>Mozilla Firefox</span>
+                    </a>
+                </li>
+                <li class="opera">
+                    <a href="http://www.opera.com/" target="_blank">
+                        <span>Opera</span>
+                    </a>
+                </li>
+                <li class="ie">
+                    <a href="http://windows.microsoft.com/ie" target="_blank">
+                        <span>Internet Explorer</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Templates -->
+        <script type="text/html" id="image-template">
+            <!-- ko if: $data !== undefined -->
+            <div class="image-container" data-bind="click: $root.toggleImageSelection, css: { selected: selected }">
+                <label class="checkbox">
+                    <input type="checkbox" data-bind="checked: selected"/>
+                    <span></span>
+                </label>
+                <figure data-bind="css: { full: !$root.printImagesLabel() }">
+                    <img data-bind="attr: { src: file, alt: name }"/>
+                </figure>
+                <p data-bind="text: name, css: { hidden: !$root.printImagesLabel() }"></p>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: $data === undefined -->
+            <div class="image-container"></div>
+            <!-- /ko -->
+        </script>
+
+        <script type="text/html" id="page-template">
+            <div class="layout" data-bind="css: { 'l-3': $root.layoutView() === 'layout-3', 'l-5': $root.layoutView() === 'layout-5', last: $index() === $root.pages().length - 1 }">
+                <button class="close" title="Remove Page" data-bind="click: $root.removePage, visible: $root.pages().length > 1 && $index() > 0">
+                    <span class="icon-close"></span>
+                </button>
+                <img alt="Size" data-bind="attr: { src: $root.layoutView() === 'layout-3' ? 'img/3x3.gif' : 'img/5x5.gif' }" />
+                <div class="page" data-bind="template: { name: 'image-template', foreach: $root.pages()[$index()] }"></div>
+            </div>
+        </script>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/vendor/head.core.min.js"></script>
+        <script src="js/vendor/knockout-3.2.0.js"></script>
+        <script src="js/vendor/select2.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

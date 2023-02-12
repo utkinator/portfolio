@@ -1,0 +1,12 @@
+* html #wrapper,
+* html #footer {
+	width: expression(
+	(document.compatMode && document.compatMode == 'CSS1Compat') ?
+	(document.documentElement.clientWidth < 1000 ? "1000px" :
+	(document.documentElement.clientWidth > 1400 ? "1400px" : "auto")) :
+	(document.body.clientWidth > 1000 ? "1000px" :
+	(document.body.clientWidth < 1400 ? "1400px" : "auto")));
+}
+
+.am{margin-left:0; left:-15px;}
+.look p{line-height:10px;}

@@ -1,0 +1,23 @@
+{
+  "main.css": "static/css/main.33379c7d.css",
+  "main.css.map": "static/css/main.33379c7d.css.map",
+  "main.js": "static/js/main.bc2588da.js",
+  "main.js.map": "static/js/main.bc2588da.js.map",
+  "static/media/clouds.png": "static/media/clouds.58fa4a2a.png",
+  "static/media/dust.png": "static/media/dust.da4b5fdf.png",
+  "static/media/fog.png": "static/media/fog.8b5e8cef.png",
+  "static/media/hail.png": "static/media/hail.63af1bed.png",
+  "static/media/hot.png": "static/media/hot.32831bf7.png",
+  "static/media/rain.png": "static/media/rain.05fe7ffe.png",
+  "static/media/snow.png": "static/media/snow.82d10435.png",
+  "static/media/storm.png": "static/media/storm.3e588a0b.png",
+  "static/media/sunny.png": "static/media/sunny.0b797262.png",
+  "static/media/thunderstorm-lightning.png": "static/media/thunderstorm-lightning.0d1b3d6a.png",
+  "static/media/tornado.png": "static/media/tornado.c6da4fd6.png",
+  "static/media/weathericons-regular-webfont.eot": "static/media/weathericons-regular-webfont.4b658767.eot",
+  "static/media/weathericons-regular-webfont.svg": "static/media/weathericons-regular-webfont.ecaf8b48.svg",
+  "static/media/weathericons-regular-webfont.ttf": "static/media/weathericons-regular-webfont.4618f0de.ttf",
+  "static/media/weathericons-regular-webfont.woff": "static/media/weathericons-regular-webfont.8cac70eb.woff",
+  "static/media/weathericons-regular-webfont.woff2": "static/media/weathericons-regular-webfont.1cd48d78.woff2",
+  "static/media/wind.png": "static/media/wind.1ac706af.png"
+}

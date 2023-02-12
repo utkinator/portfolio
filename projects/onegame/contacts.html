@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Проект "ONEGAME" - Контактная информация</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="title" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+	<!--[if lte IE 7]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" /><![endif]-->
+
+    <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script src="js/style_form.js" type="text/javascript"></script>
+    <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="js/jquery.validate.messages_ru.js" type="text/javascript"></script>
+    <script src="js/jquery.jcarousel.min.js" type="text/javascript"></script>
+    <script src="js/scripts.js" type="text/javascript"></script>
+    <!--[if IE 6]>
+        <script type="text/javascript" src="js/DD_belatedPNG-min.js"></script>
+        <script type="text/javascript">
+          DD_belatedPNG.fix('*');
+        </script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="popups">
+    <div id="order" class="popup">
+        <a class="close"> </a>
+        <div class="p-cont">
+            <h3>Заказ сервера</h3>
+
+            <div class="controls">
+                <form action="#" method="post">
+
+                    <div class="s_block s-long">
+                        <label>Название игры</label>
+                        <select name="gname" class="styled">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="s_block s-long">
+                        <label>Период аренды</label>
+                        <select name="garenda" class="styled">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="s_block s-middle">
+                        <label>Местонахождение</label>
+                        <select name="gplace" class="styled">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="s_block s-short">
+                        <label>Игроки</label>
+                        <select name="gplayers" class="styled">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+
+                    <p class="total clearfix">Общая сумма: <strong>160</strong> грн.</p>
+
+                    <div class="sep"> </div>
+
+                    <div class="i_block clearfix">
+                        <label>Электроннная почта</label>
+                        <div class="block">
+                            <sub> </sub>
+                            <sup> </sup>
+                            <input type="text" name="email" />
+                            <span class="clean"> </span>
+                        </div>
+                    </div>
+
+                    <div class="i_block short s-first">
+                        <label>Пароль</label>
+                        <div class="block">
+                            <sub> </sub>
+                            <sup> </sup>
+                            <input type="password" name="password" />
+                            <span class="clean"> </span>
+                        </div>
+                    </div>
+                    <div class="i_block short">
+                        <label>Повторить пароль</label>
+                        <div class="block">
+                            <sub> </sub>
+                            <sup> </sup>
+                            <input type="password" name="password_again" />
+                            <span class="clean"> </span>
+                        </div>
+                    </div>
+
+                    <div class="agreement clearfix">
+                        <input class="styled" type="checkbox" id="accept" />
+                        <label for="accept">Я согласен с условиями <a href="#">договора</a></label>
+                    </div>
+
+                    <div class="button">
+                        <button type="submit" class="btn" value="">Отправить</button>
+                    </div>
+                </form><!-- END Form -->
+            </div><!-- END Order Controls -->
+        </div><!-- END Order Content -->
+    </div><!-- END Order Popup -->
+
+    <div id="enter" class="popup">
+        <a class="close"> </a>
+        <div class="p-cont">
+            <div class="controls">
+                <form action="#" method="post">
+                    <div class="input clearfix">
+                        <input type="text" name="login" value="логин" />
+                    </div>
+                    <div class="input clearfix">
+                        <input type="password" name="pass" value="" />
+                    </div>
+
+                    <div class="agreement clearfix">
+                        <input class="styled" type="checkbox" name="remember" id="remember" />
+                        <label for="remember">Запомнить меня</label>
+                    </div>
+
+                    <div class="button b-enter">
+                        <button type="submit" class="btn" value="">Войти</button>
+                    </div>
+                </form><!-- END Form -->
+            </div><!-- END Enter Controls -->
+        </div><!-- END Enter Content -->
+    </div><!-- END Enter Popup -->
+
+    <div id="feedback" class="popup">
+        <a class="close"> </a>
+        <div class="p-cont">
+            <h3>Обратная связь</h3>
+
+            <div class="controls">
+                <form action="#" method="post" class="contact-form">
+
+                    <div class="i_block clearfix">
+                        <label>Имя и фамилия</label>
+                        <div class="block">
+                            <sub> </sub>
+                            <sup> </sup>
+                            <input type="text" name="fio" />
+                            <span class="clean"> </span>
+                        </div>
+                    </div>
+                    <div class="i_block clearfix">
+                        <label>Телефон</label>
+                        <div class="block">
+                            <sub> </sub>
+                            <sup> </sup>
+                            <input type="text" name="phone" />
+                            <span class="clean"> </span>
+                            <span class="nb">Указывать в формате: +38 (063) 375-85-90</span>
+                        </div>
+                    </div>
+
+                    <div class="t_block clearfix">
+                        <label>Текст сообщения</label>
+                        <div class="block">
+                            <sub> </sub>
+                            <sup> </sup>
+                            <textarea name="short_info" cols="5" rows="3">&nbsp;</textarea>
+                            <span class="clean"> </span>
+                        </div>
+                    </div>
+
+                    <div class="button b-enter">
+                        <button type="submit" class="btn" value="">Отправить</button>
+                    </div>
+                </form><!-- END Form -->
+            </div><!-- END Feedback Controls -->
+        </div><!-- END Feedback Content -->
+    </div><!-- END Feedback Popup -->
+
+    <div id="server" class="popup">
+        <a class="close"> </a>
+        <div class="serv-price">
+            <strong>60</strong>
+            <span>гривен<br /> за слот</span>
+        </div>
+        <div class="p-cont">
+            <h3>Battlefield 2</h3>
+
+            <div class="controls">
+                <div class="serv-image">
+                    <img src="img/delete-me-1.jpg" alt="Battlefield 2" title="Battlefield 2" />
+                    <div class="i-cover"> </div>
+                </div><!-- END Server Image -->
+
+                <div class="serv-req">
+                    <ul>
+                        <li>
+                            <p>Конфигурирование настроек сервера из веб панели управления.</p>
+                        </li>
+                        <li>
+                            <p>Сервер должен быть всегда запаролен.</p>
+                        </li>
+                        <li>
+                            <p>Автоматическое отключение сервера, если в течении 60 минут на нем нет игроков.</p>
+                        </li>
+                    </ul>
+                </div><!-- END Server Requierements -->
+
+                <h2>Тестовые сервера</h2>
+
+                <div id="servers-list-wrapper">
+                    <div id="carousel-next"> </div>
+                    <div id="carousel-prev"> </div>
+                    <ul id="servers-list">
+                        <li>
+                            <div class="serv-test">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>Локация 1</td>
+                                            <td>Провайдер</td>
+                                            <td>Карта</td>
+                                            <td>Игроки</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Москва</td>
+                                            <td>Golden Telecom<p>83.222.109.20:11024</p></td>
+                                            <td>Bi Ming</td>
+                                            <td>14 из 32</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Киев</td>
+                                            <td>Data Point<p>83.222.109.20:11024</p></td>
+                                            <td>Al Besrah</td>
+                                            <td>16 из 64</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- END Testing Servers -->
+                        </li>
+                        <li>
+                            <div class="serv-test">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>Локация 2</td>
+                                            <td>Провайдер</td>
+                                            <td>Карта</td>
+                                            <td>Игроки</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Москва</td>
+                                            <td>Golden Telecom<p>83.222.109.20:11024</p></td>
+                                            <td>Bi Ming</td>
+                                            <td>14 из 32</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Киев</td>
+                                            <td>Data Point<p>83.222.109.20:11024</p></td>
+                                            <td>Al Besrah</td>
+                                            <td>16 из 64</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- END Testing Servers -->
+                        </li>
+                        <li>
+                            <div class="serv-test">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>Локация 3</td>
+                                            <td>Провайдер</td>
+                                            <td>Карта</td>
+                                            <td>Игроки</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Москва</td>
+                                            <td>Golden Telecom<p>83.222.109.20:11024</p></td>
+                                            <td>Bi Ming</td>
+                                            <td>14 из 32</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Киев</td>
+                                            <td>Data Point<p>83.222.109.20:11024</p></td>
+                                            <td>Al Besrah</td>
+                                            <td>16 из 64</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- END Testing Servers -->
+                        </li>
+                    </ul>
+                </div><!-- END Carousel -->
+
+                <form action="#" method="post">
+                    <div class="s_block s-short">
+                        <label>Количество игроков</label>
+                        <select name="gplayers" class="styled">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="button b-enter">
+                        <button type="submit" class="btn" value="">Заказать</button>
+                    </div>
+                </form><!-- END Form -->
+            </div><!-- END Server Controls -->
+        </div><!-- END Server Content -->
+    </div><!-- END Server Popup -->
+</div><!-- END Popups Wrapper -->
+
+<div id="layout">
+    <!--<div class="bg-pic"> </div>-->
+    <div id="wrapper">
+        <div id="header">
+            <!--<span class="show p-order">Покажи же мне.</span>-->
+            <!--<span class="show p-enter">Логин.</span>-->
+            <!--<span class="show p-feedback">Обратная связь.</span>-->
+            <!--<span class="show p-server">Сервер.</span>-->
+            <div class="h-inner h-ask">
+
+                <a class="logo" href="#" title="ONEGAME - игровые сервера"> </a>
+
+                <ul class="t-menu clearfix">
+                    <li class="mon"><a href="#" title="Мониторинг серверов"><sub> </sub>Мониторинг серверов</a></li>
+                    <li><a href="#" title="Форум">Форум</a></li>
+                    <li><a href="#" title="Личный кабинет">Личный кабинет</a></li>
+                </ul><!-- END Top Menu -->
+
+                <ul class="h-menu clearfix">
+                    <li><a href="#" title="Новости">Новости</a></li>
+                    <li><a href="#" title="Услуги">Услуги</a></li>
+                    <li><a href="#" title="Акции">Акции</a></li>
+                    <li><a href="#" title="Вопросы">Вопросы</a></li>
+                    <li><a href="#" title="Контакты" class="active">Контакты</a></li>
+                </ul><!-- END Horizontal Menu -->
+
+                <div class="search-block">
+                    <form action="#" method="post">
+                        <div class="i_block clearfix">
+                            <div class="block">
+                                <sub> </sub>
+                                <sup> </sup>
+                                <input type="text" name="search" class="search" value="найти" />
+                                <button type="submit" class="s-btn" value=""> </button>
+                            </div>
+                        </div>
+                    </form>
+                    <a class="site-map" href="#" title="Карта сайта">карта сайта</a>
+                    <ul class="q-links">
+                        <li><a href="#" class="q-home" title="На главную"> </a></li>
+                        <li><a href="#" class="q-search" title="Поиск"> </a></li>
+                        <li><a href="#" class="q-contacts" title="Контакты"> </a></li>
+                    </ul><!-- END Quick Links -->
+                </div><!-- END Search Block -->
+
+
+            </div><!-- END Head Inner -->
+        </div><!-- END Header -->
+
+        <div id="content" class="clearfix">
+            <div class="c-inner">
+                <div class="sidebar sb-news">
+                    <h5>Как оплатить?</h5>
+
+                    <div class="rand-img">
+                        <img src="img/rand-3.png" alt="Как оплатить?" title="Как оплатить?"/>
+                    </div><!-- END Random Image -->
+
+                    <div class="s-descr">
+                        <p>Все вопросы и проблемы решаются оперативно. Служба технической поддержки работает круглосуточно.</p>
+                    </div><!-- END Service Description -->
+
+                    <div class="akciya">
+                        <img src="img/ico-price.png" alt="Наша новая акция" title="Наша новая акция" />
+                        <p>Наша новая акция</p>
+                        <p>«<a href="#" title="Месяц бесплатного хостинга">Месяц бесплатного хостинга</a>»</p>
+
+                        <div class="b-bd"> </div>
+                    </div><!-- END Akciya -->
+
+                </div><!-- END Sidebar -->
+
+                <div class="data">
+                    <h1>Контактная информация</h1>
+
+                    <span class="B_crumbBox">
+                        <span class="B_firstCrumb">
+                            <a title="Главная" href="#" class="B_crumb">Главная</a>
+                        </span>
+                        <span class="B_lastCrumb">
+                            <span class="B_currentCrumb">Контактная информация</span>
+                        </span>
+                    </span><!-- END BreadCrumbs -->
+
+                    <div class="c-left cl-ie">
+                        <h3>Служба поддержки</h3>
+                        <div class="time">
+                            <p>(095) <strong>797–95–00</strong></p>
+                            <p class="small">работаем с 10:00 и до 23:00</p>
+                        </div>
+                        <a href="mailto:support@onegame.com.ua" class="mailto">support@onegame.com.ua</a>
+                    </div><!-- END Content Left Side -->
+
+                    <div class="c-right">
+                        <form action="#" method="post" class="contact-form">
+                            <div class="cont-form">
+                                <div class="form">
+                                    <h3>Обратная связь</h3>
+                                    <div class="i_block clearfix">
+                                        <label>Имя и фамилия</label>
+                                        <div class="block">
+                                            <sub> </sub>
+                                            <sup> </sup>
+                                            <input type="text" name="fio" />
+                                            <span class="clean"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="i_block clearfix">
+                                        <label>Телефон</label>
+                                        <div class="block">
+                                            <sub> </sub>
+                                            <sup> </sup>
+                                            <input type="text" name="phone" />
+                                            <span class="clean"> </span>
+                                            <span class="nb">Указывать в формате: +38 (063) 375-85-90</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="t_block clearfix">
+                                        <label>Текст сообщения</label>
+                                        <div class="block">
+                                            <sub> </sub>
+                                            <sup> </sup>
+                                            <textarea name="short_info" cols="5" rows="3">&nbsp;</textarea>
+                                            <span class="clean"> </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="button b-enter">
+                                        <button type="submit" class="btn" value="">Отправить</button>
+                                    </div>
+                                </div>
+                                <div class="a-cut-r"> </div>
+                                <div class="a-cut-b"> </div>
+                            </div>
+                        </form>
+                    </div><!-- END Content Right Side -->
+
+                </div><!-- END Data -->
+
+                <div class="clear"> </div>
+            </div><!-- END Content Inner -->
+        </div><!-- END Content -->
+
+        <div id="footer">
+            <div class="f-inner f-contacts">
+
+                <div class="enter-serv">
+                    <h4>Вход на сервер</h4>
+                    <form action="#" method="post">
+                        <div class="i_block short s-first">
+                            <div class="block">
+                                <sub> </sub>
+                                <sup> </sup>
+                                <input type="text" name="slogin" value="логин" />
+                            </div>
+                        </div>
+                        <div class="i_block short">
+                            <div class="block">
+                                <sub> </sub>
+                                <sup> </sup>
+                                <input type="password" name="spass" />
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="e-btn" value=""> </button>
+                        </div>
+                    </form>
+                    <a href="#" class="reg">Регистрация</a>
+                </div><!-- END Enter Server -->
+
+                <div class="copy">
+                    <p class="c1"><sub>©</sub> 2004 Игровой сервер «One game»</p>
+                    <p>Все права защищены</p>
+                </div><!-- END Copyright -->
+
+                <div class="address">
+                    <address>Украина, город Киев, ул. Хрещатик, 5</address>
+                </div><!-- END Adress -->
+
+                <div class="phone">
+                    <p>Телефон:</p>
+                    <p class="c2">(095) <strong>797–95–00</strong></p>
+                </div><!-- END Phone Number -->
+
+                <div class="decor"> </div>
+            </div><!-- END Foot Inner -->
+        </div><!-- END Footer -->
+    </div><!-- END Wrapper -->
+</div><!-- END Layout -->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Lightwriter SL50</title>
+        <meta name="description" content="Setup Profile setting for Lightwriter SL50">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel='icon' type='image/png' href='favicon-32x32.png' sizes='32x32' />
+        <link rel='icon' type='image/png' href='favicon-16x16.png' sizes='16x16' />
+        <link rel="apple-touch-icon" href="apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" href="apple-touch-icon-152x152.png">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <script>
+            function createAndOpenFile(){
+                var xmltext = new XMLSerializer().serializeToString(window.xmlDoc.documentElement);
+                var filename = "file.xml";
+                var pom = document.createElement('a');
+                var bb = new Blob([xmltext], {type: 'text/plain'});
+
+                pom.setAttribute('href', window.URL.createObjectURL(bb));
+                pom.setAttribute('download', filename);
+
+                pom.dataset.downloadurl = ['text/plain', pom.download, pom.href].join(':');
+                pom.draggable = true;
+                pom.classList.add('dragout');
+
+                pom.click();
+            }
+        </script>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <a href="http://www.abilia.com/sv" class="logo" title="ABILIA">ABILIA</a>
+
+        <div id="root">
+            <p class="loading">Loading xml file ...</p>
+        </div>
+        <div class="controls">
+            <button onclick="createAndOpenFile()" class="get-xml">Get XML</button>
+        </div>
+
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

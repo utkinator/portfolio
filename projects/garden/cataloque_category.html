@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Проект "Сад Сервис" - Каталог</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="title" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+	<!--[if lte IE 7]><link rel="stylesheet" href="css/style_ie.css" type="text/css" media="screen" /><![endif]-->
+
+    <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery.fancybox-1.3.1.pack.js" type="text/javascript"></script>
+    <script src="js/scripts.js" type="text/javascript"></script>
+    <!--[if IE 6]>
+        <script type="text/javascript" src="js/DD_belatedPNG-min.js"></script>
+        <script type="text/javascript">
+          DD_belatedPNG.fix('*');
+        </script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="cat_bg"> </div>
+<div id="wrapper" class="w-inner">
+    <div id="header"><!-- Header -->
+        <a href="#">
+            <img src="img/logo_2.png" alt="Сад Сервис" class="logo"/>
+        </a>
+        <div class="tm-inner clearfix">
+            <div class="ti-l"> </div>
+            <ul class="clearfix">
+                <li>
+                    <a href="#">
+                        <span>О компании</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Услуги</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <span>Растения</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Фотогалерея</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Статьи</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Спецпредложения</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Контактная информация</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="ti-r"> </div>
+        </div>
+	</div><!-- END Header -->
+
+	<div id="content"><!-- Content -->
+
+        <script type="text/javascript">
+            function cataloqueMenuResize(){
+                if($('body').width() > 1400){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 2.2%'});
+                }
+                if($('body').width() < 1400 && $('body').width() > 1350){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 2%'});
+                }
+                if($('body').width() < 1350 && $('body').width() > 1300){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 1.8%'});
+                }
+                if($('body').width() < 1300 && $('body').width() > 1250){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 1.6%'});
+                }
+                if($('body').width() < 1250 && $('body').width() > 1200){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 1.4%'});
+                }
+                if($('body').width() < 1200 && $('body').width() > 1150){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 1%'});
+                }
+                if($('body').width() < 1150 && $('body').width() > 1100){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 0.8%'});
+                }
+                if($('body').width() < 1100 && $('body').width() > 1050){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0 0.5%'});
+                }
+                if($('body').width() < 1050 && $('body').width() > 1000){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0.3%'});
+                }
+                if($('body').width() < 1000){
+                    $('.c_list .c_i:not(".active")').css({'padding':'0'});
+                }
+            }
+            $(document).ready(function() {
+                cataloqueMenuResize();
+                $(window).bind('resize', function() {
+                    cataloqueMenuResize();
+                });
+
+                $('.sc_list li:first').addClass('first');
+            });
+        </script>
+        <div class="cat_menu">
+            <ul class="c_list">
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_1.png" alt="Хвойные" />
+                        <span>Хвойные</span>
+                    </a>
+                </li>
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_2.png" alt="Листопадные" />
+                        <span>Листопадные</span>
+                    </a>
+                </li>
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_3.png" alt="Вечнозеленые" />
+                        <span>Вечнозеленые</span>
+                    </a>
+                </li>
+                <li class="c_i active">
+                    <a href="#">
+                        <img src="img/small_tree_4.png" alt="Травянистые многолетники" />
+                        <span>Травянистые<br/> многолетники</span>
+                        <ins>Многообразие хвойных пород растений делает их любимыми и почитателями уюта, и экспериментаторами</ins>
+                    </a>
+                </li>
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_5.png" alt="Вьющиеся" />
+                        <span>Вьющиеся</span>
+                    </a>
+                </li>
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_6.png" alt="Вересковые" />
+                        <span>Вересковые</span>
+                    </a>
+                </li>
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_7.png" alt="Растения для водоемов" />
+                        <span>Растения для водоемов</span>
+                    </a>
+                </li>
+                <li class="c_i">
+                    <a href="#">
+                        <img src="img/small_tree_8.png" alt="Розы" />
+                        <span>Розы</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <ul class="sc_list">
+                <li>
+                    <a href="#">Цветущие многолетники</a>
+                </li>
+                <li>
+                    <a href="#">Декоративные злаки</a>
+                </li>
+                <li>
+                    <a href="#">Папоротники</a>
+                </li>
+                <li>
+                    <a href="#" class="active">Лекарственные и пряные травы </a>
+                </li>
+                <li>
+                    <a href="#">Луковичные и клубневые</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="c_wrapper clearfix">
+            <li class="cc_1">
+                <h1>Лекарственные и пряные травы</h1>
+                <span class="B_crumbBox"><!-- Breadcrumbs -->
+                    <span class="B_firstCrumb">
+                        <a title="Главная" href="#" class="B_homeCrumb">Главная</a>
+                    </span>
+                    »
+                    <a href="#" class="B_crumb" title="Каталог">Каталог</a>
+                    »
+                    <a href="#" class="B_crumb" title="Травянистые многолетники">Травянистые многолетники</a>
+                    »
+                    <span class="B_lastCrumb">
+                        <span class="B_currentCrumb">Лекарственные и пряные травы</span>
+                    </span>
+                </span><br/><!-- END Breadcrumbs -->
+
+                <ul class="cataloque">
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_1.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_2.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_1.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_2.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_1.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_2.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_1.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_2.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_1.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_2.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_1.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                    <li>
+                        <a class="fancy" href="img/del_windows.jpg">
+                            <img src="img/del_c_2.jpg" alt="Кипарис пирамидальный"/>
+                        </a>
+                        <a class="link" title="Кипарис пирамидальный" href="#">Кипарис пирамидальный</a>
+                        <div class="descr">
+                            <p>диаметр горшка: <strong>12 см</strong></p>
+                            <p>высота: <strong>140 см</strong></p>
+                        </div>
+                        <p>Неприхотливое, но  благородное растение украсит ваш дом!</p>
+                    </li>
+                </ul>
+
+                <div class="pagination clearfix">
+                    <span class="pp">Страницы:</span>
+
+                    <span class="ditto_previous_off ditto_off">&lt;&lt;</span>
+                    <span class="ditto_currentpage">1</span>
+                    <a href="#" class="ditto_page">2</a>
+                    <a href="#" class="ditto_page">3</a>
+                    <a href="#" class="ditto_page">4</a>
+                    <a href="#" class="ditto_page">5</a>
+                    <a href="#" class="ditto_page">6</a>
+                    <a class="ditto_next_link" href="#">&gt;&gt;</a>
+
+                </div>
+
+            </li>
+            <li class="cc_2">
+
+                <div class="b-green rounded">
+                    <p>Подбирать растения и ухаживать за ними - это целое искусство и перед тем, как купить домой комнатное растение, нужно узнать все нюансы. Магазин "Сад Сервис" в Одессе — это проект, где вы можете почитать о тонкостях подбора <a href="#">растений для дома</a>.</p>
+                </div>
+
+                <div class="spec">
+                    <div class="s_tl"> </div>    
+                    <div class="s_tr"> </div>
+                    <div class="s_bl"> </div>
+                    <div class="s_br"> </div>
+                    <img src="img/box.png" alt="Специальные предложения" class="box"/>
+                    <span class="title">Специальные предложения</span>
+                    <ul class="spec_list">
+                        <li>
+                            <a class="fancy" href="img/del_windows.jpg">
+                                <img src="img/del_s_1.jpg" alt="Азалия кенийская"/>
+                            </a>
+                            <a class="link" title="Азалия кенийская" href="#">Азалия кенийская</a>
+                            <div class="descr">
+                                <p>диаметр горшка: <strong>12 см</strong></p>
+                                <p>высота: <strong>140 см</strong></p>
+                            </div>
+                            <p class="price">115 грн</p>
+                        </li>
+                        <li>
+                            <a class="fancy" href="img/del_windows.jpg">
+                                <img src="img/del_s_1.jpg" alt="Азалия кенийская"/>
+                            </a>
+                            <a class="link" title="Азалия кенийская" href="#">Азалия кенийская</a>
+                            <div class="descr">
+                                <p>диаметр горшка: <strong>12 см</strong></p>
+                                <p>высота: <strong>140 см</strong></p>
+                            </div>
+                            <p class="price">115 грн</p>
+                        </li>
+                        <li>
+                            <a class="fancy" href="img/del_windows.jpg">
+                                <img src="img/del_s_1.jpg" alt="Азалия кенийская"/>
+                            </a>
+                            <a class="link" title="Азалия кенийская" href="#">Азалия кенийская</a>
+                            <div class="descr">
+                                <p>диаметр горшка: <strong>12 см</strong></p>
+                                <p>высота: <strong>140 см</strong></p>
+                            </div>
+                            <p class="price">115 грн</p>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+	</div><!-- END Content -->
+
+	<div id="footer"><!-- Footer -->
+        <address>
+            <span>
+                тел./факс:
+                <img src="img/phone.png" alt="701 68 69"/>
+            </span>
+            <span>
+                <strong>ул. Дача Ковалевского, строение 117-а</strong>
+                <a href="#"><ins>как проехать</ins></a>
+            </span>
+        </address>
+        <ul class="b-menu clearfix">
+            <li>
+                <a href="#"><span>О компании</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Услуги</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Растения</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Фотогалерея</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Статьи</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Спецпредложения</span></a>
+            </li>
+            <li>
+                <a href="#"><span>Контактная информация</span></a>
+            </li>
+        </ul>
+        <a href="http://cooper-design.com.ua" class="cooper ver2">
+            <span>разработка сайта</span>
+        </a>
+	</div><!-- END Footer -->
+
+</div>
+
+</body>
+</html>

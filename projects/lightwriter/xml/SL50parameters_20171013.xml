@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+    <enum id="com.tobychurchill.TypeNTalk.hourformat">
+        <value nick="12h" value="0"/>
+        <value nick="24h" value="1"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.scansounds">
+        <value nick="announcekeys" value="0"/>
+        <value nick="beep" value="1"/>
+        <value nick="click" value="2"/>
+        <value nick="ascending" value="3"/>
+        <value nick="descending" value="4"/>
+        <value nick="none" value="5"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.scanpattern">
+        <value nick="rowcolumn" value="0"/>
+        <value nick="keybykey" value="1"/>
+        <value nick="halfandhalf" value="2"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.keysounds">
+        <value nick="announcekeys" value="0"/>
+        <value nick="beep" value="1"/>
+        <value nick="click" value="2"/>
+        <value nick="none" value="3"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.keybacklight">
+        <value nick="on" value="0"/>
+        <value nick="off" value="1"/>
+        <value nick="automatic" value="2"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.display2fontsize">
+        <value nick="full" value="0"/>
+        <value nick="half" value="1"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.displaybacklight">
+        <value nick="on" value="0"/>
+        <value nick="off" value="1"/>
+        <value nick="automatic" value="2"/>
+    </enum>
+    <enum id="com.tobychurchill.TypeNTalk.showclock">
+        <value nick="timeonly" value="0"/>
+        <value nick="timeanddate" value="1"/>
+        <value nick="dateonly" value="2"/>
+        <value nick="off" value="3"/>
+    </enum>
+
+    <schema path="/com/tobychurchill/TypeNTalk/" id="com.tobychurchill.TypeNTalk">
+
+        <key name='date-format' type='s'>
+            <summary>Date format</summary>
+            <description>
+                The date format string to use for showing dates.
+            </description>
+            <choices>
+                <choice value='%d/%m/%Y'/>
+                <choice value='%m/%d/%Y'/>
+                <choice value='%Y/%m/%d'/>
+            </choices>
+            <default>'%d/%m/%Y'</default>
+        </key>
+
+        <key name='hour-format' enum='com.tobychurchill.TypeNTalk.hourformat'>
+            <summary>Clock format</summary>
+            <description>
+                The clock format which should be used to display time.
+            </description>
+            <default>'12h'</default>
+        </key>
+
+        <key name='show-seconds' type='b'>
+            <summary>Show seconds</summary>
+            <description>
+                Whether seconds should be shown in the clock.
+            </description>
+            <default>false</default>
+        </key>
+
+        <key name='show-clock' enum="com.tobychurchill.TypeNTalk.showclock">
+            <summary>Show clock</summary>
+            <description>
+                Whether time only, date and time, date only, or no time should be shown.
+            </description>
+            <default>'timeanddate'</default>
+        </key>
+
+        <key name='hour-minute-separator' type='s'>
+            <summary>Hour to minutes separator</summary>
+            <description>
+                The separator which should be shown between the hour and the minutes in
+                the clock.
+            </description>
+            <default>':'</default>
+        </key>
+
+        <key name='minute-second-separator' type='s'>
+            <summary>Minutes to seconds separator</summary>
+            <description>
+                The separator which should be shown between the minutes and the seconds
+                in the clock.
+            </description>
+            <default>':'</default>
+        </key>
+
+        <!-- SOUND -->
+
+        <key name="volume" type="u">
+            <summary>Volume</summary>
+            <description>
+                The master volume for audio. Other volume settings are adjustments
+                relative to the master volume.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="voice-volume" type="u">
+            <summary>Voice volume</summary>
+            <description>
+                The volume of the voice which is used for speech synthesis.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="announce-gain" type="u">
+            <summary>Announce volume</summary>
+            <description>
+                The volume of the voice which is used for reading out the menus,
+                announce key names when scanning and other announcements by the device
+                for the attention of the user.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="output-mix" type="i">
+            <summary>Output mix</summary>
+            <description>
+                The mix between sending announcement audio to headphones and speakers.
+                -50 sends all audio to headphones, 50 sends all audio to speakers.
+            </description>
+            <range min="-50" max="50"/>
+            <default>0</default>
+        </key>
+
+        <key name="speaker-gain" type="u">
+            <summary>Built-in speaker volume</summary>
+            <description>
+                The volume of the sound which is played through the built-in speakers.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="headphone-gain" type="u">
+            <summary>Headphone volume</summary>
+            <description>
+                The volume of the sound which is played through headphones.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="bluetooth-out" type="u">
+            <summary>Bluetooth speaker volume</summary>
+            <description>
+                The volume of the sound which is played through a phone using
+                Bluetooth.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="internal-mic" type="u">
+            <summary>Internal microphone gain</summary>
+            <description>
+                The input volume level for the built-in microphone.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="line-in" type="u">
+            <summary>External microphone gain</summary>
+            <description>
+                The input volume level for an external microphone.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="bluetooth-in" type="u">
+            <summary>Bluetooth microphone gain</summary>
+            <description>
+                The input volume level for a Bluetooth microphone.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="keypress-volume" type="u">
+            <summary>Keypress volume</summary>
+            <description>
+                The volume of the sound which is emitted when a key is pressed.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="scan-volume" type="u">
+            <summary>Scan volume</summary>
+            <description>
+                The volume of the sound which is made while a scan is running.
+            </description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
+
+        <key name="scan-sounds" enum="com.tobychurchill.TypeNTalk.scansounds">
+            <summary>Scan sound</summary>
+            <description>
+                The type of sound which is made during a scan.
+            </description>
+            <default>'ascending'</default>
+        </key>
+
+        <key name="scan-timeout" type="u">
+            <summary>Scan timeout</summary>
+            <description>
+                How many loop iterations should happen before backing out
+                a step during Row/Column and Half/Half scanning. 0 means no timeout.
+            </description>
+            <default>4</default>
+        </key>
+
+        <key name="key-sounds" enum="com.tobychurchill.TypeNTalk.keysounds">
+            <summary>Keypress sound</summary>
+            <description>
+                The type of sound which is made when a key is pressed.
+            </description>
+            <default>'click'</default>
+        </key>
+
+        <key name="announce-letters" type='b'>
+            <summary>Announce key presses</summary>
+            <description>
+                Whether key presses should be read back to the user after they are
+                made.
+            </description>
+            <default>false</default>
+        </key>
+
+        <key name="announce-words" type='b'>
+            <summary>Announce words</summary>
+            <description>
+                Whether words should be read back to the user after they are typed in.
+            </description>
+            <default>false</default>
+        </key>
+
+        <key name="announce-menus" type='b'>
+            <summary>Announce menus</summary>
+            <description>
+                Whether the menu should be read back to the user as the user navigates
+                through it.
+            </description>
+            <default>false</default>
+        </key>
+
+        <key name="speech-voice" type='s'>
+            <summary>Speech voice</summary>
+            <description>
+                The voice which is used for speech synthesis.
+            </description>
+            <default>'Peter'</default>
+        </key>
+
+        <key name="announce-voice" type='s'>
+            <summary>Announcement voice</summary>
+            <description>
+                The voice which is used for reading out the menus, announce key names
+                when scanning and other announcements by the device for the attention
+                of the user.
+            </description>
+            <default>'Rachel'</default>
+        </key>
+
+        <!-- KEYBOARD -->
+
+        <key name="minimum-keypress" type="u">
+            <summary>Minimum key press</summary>
+            <description>
+                The minimum number of millisecond that a key must be held down before
+                it registers as a key press.
+            </description>
+            <default>100</default>
+        </key>
+
+        <key name="tremor-filter" type="u">
+            <summary>Tremor filter</summary>
+            <description>
+                Treat repeated key presses on one key within this number of
+                milliseconds as one key press. The tremor filter must be longer or
+                equal to than the minimum key press.
+            </description>
+            <default>300</default>
+        </key>
+
+        <key name="long-keypress" type="u">
+            <summary>Long key press</summary>
+            <description>
+                The number of milliseconds which a key must be held down to access the
+                secondary function of that key. Long key press must be longer than the
+                tremor filter.
+            </description>
+            <default>900</default>
+        </key>
+
+        <key name="keyboard-mapping" type="s">
+            <summary>Name of keyboard mapping</summary>
+            <description>
+                Keyboard mappings are ini files found in ~/.config/type-n-talk/keyboardmap/name.kbmapping
+                System mappings are installed to /usr/share/type-n-talk/keyboardmap/
+                The name in this setting is the name part of that file. Each keyboard
+                mapping file contains a "Keys" group with key1...key51 values.
+            </description>
+            <default>'system-English'</default>
+        </key>
+
+        <key name="repeat-delay" type="u">
+            <summary>Key repeat delay</summary>
+            <description>
+                The delay in milliseconds before registering a long key press as two
+                key presses.
+            </description>
+            <default>660</default>
+        </key>
+
+        <key name="repeat-speed" type="u">
+            <summary>Key repeat speed</summary>
+            <description>
+                The delay in milliseconds between registering a second and any
+                subsequent key presses during a long key press.
+            </description>
+            <default>25</default>
+        </key>
+
+        <key name="key-backlight" enum="com.tobychurchill.TypeNTalk.keybacklight">
+            <summary>Keyboard backlight mode</summary>
+            <description>
+                The mode which determines when the keyboard backlight should be
+                enabled.
+            </description>
+            <default>'automatic'</default>
+        </key>
+
+        <!-- TODO: confirm min/max -->
+        <key name="key-backlight-level" type="u">
+            <summary>Keyboard backlight brightness</summary>
+            <description>
+                The brightness of the keyboard backlight.
+            </description>
+            <range min="0" max="10"/>
+            <default>5</default>
+        </key>
+
+        <key name="key-backlight-timeout" type="u">
+            <summary>Keyboard backlight timeout</summary>
+            <description>
+                The number of seconds that the device must be idle before the keyboard
+                backlight switches off.
+            </description>
+            <range min="1" max="1000"/>
+            <default>300</default>
+        </key>
+
+        <!-- TODO: Confirm min/max and units -->
+        <key name="key-backlight-threshold" type="u">
+            <summary>Keyboard backlight threshold</summary>
+            <description>
+                The ambient light threshold below which the keyboard backlight is
+                switched on.
+            </description>
+            <range min="1" max="1000"/>
+            <default>10</default>
+        </key>
+
+        <!-- TODO: Describe valid input -->
+        <key name="active-dictionaries" type='as'>
+            <summary>Active dictionaries</summary>
+            <description>
+                The Aspell language dictionaries which are enabled.
+            </description>
+            <default>[]</default>
+        </key>
+
+        <key name="auto-learn-level" type="u">
+            <summary>Auto learn threshold</summary>
+            <description>
+                The number of times that a word must be used before it is added to the
+                user dictionary and is offered as a predictive text to the user.
+            </description>
+            <default>5</default>
+        </key>
+
+        <!-- TODO: Describe valid input -->
+        <key name="user-dictionary" type='as'>
+            <summary>User dictionary</summary>
+            <description>
+                Words which are added by the user to their personal dictionary for
+                predictive text.
+            </description>
+            <default>[]</default>
+        </key>
+
+        <key name="blacklist" type='as'>
+            <summary>Predictive blacklist</summary>
+            <description>
+                Words which are never offered as predictive text.
+            </description>
+            <default>["fuck", "fucks", "shit", "damn", "hell"]</default>
+        </key>
+
+        <key name="blacklistedited" type='a{sb}'>
+            <summary>Whether blacklist has been edited for a given language</summary>
+            <description>
+                Black list dictionaries are occasionally updated on disk by system
+                updates (in /usr/share/typentalk). If the flag is not set that a blacklist
+                has been edited for the current language, we import the blacklist from
+                file at application start and when the language is changed. If it has
+                been edited we do not import.
+            </description>
+            <default>{"en_US": false}</default>
+        </key>
+
+        <key name="predictive-text" type='b'>
+            <summary>Predictive text</summary>
+            <description>
+                Whether predictive text is enabled.
+            </description>
+            <default>true</default>
+        </key>
+
+        <!-- TODO: Describe valid input -->
+        <key name="predictive-dictionary-order" type='as'>
+            <summary>Dictionary order</summary>
+            <description>
+                The order that dictionaries should be used in for predictive text.
+            </description>
+            <default>["user", "en_GB"]</default>
+        </key>
+
+        <key name="scan-pattern" enum="com.tobychurchill.TypeNTalk.scanpattern">
+            <summary>Scan pattern</summary>
+            <description>
+                The pattern which should be used for scanning through the keys.
+            </description>
+            <default>'rowcolumn'</default>
+        </key>
+
+        <key name="any-key-scanning" type='b'>
+            <summary>Scan using any key</summary>
+            <description>
+                Whether the entire keyboard is used as a scan switch.
+            </description>
+            <default>false</default>
+        </key>
+
+        <key name="scan-speed" type="u">
+            <summary>Scan speed</summary>
+            <description>
+                The number of milliseconds to wait before moving onto the next key
+                during a scan.
+            </description>
+            <range min="1" max="1000"/>
+            <default>300</default>
+        </key>
+
+        <!-- TODO: Describe valid input -->
+        <key name="fast-phrases" type='a{ss}'>
+            <summary>Fast phrases</summary>
+            <description>
+                Fast phrases which can be accessed with a keyboard shortcut.
+            </description>
+            <default>{"a": "I definitely think so",
+                "b": "Nice to meet you",
+                "c": "",
+                "d": "",
+                "e": "",
+                "f": "",
+                "g": "",
+                "h": "",
+                "i": "",
+                "j": "",
+                "k": "",
+                "l": "",
+                "m": "",
+                "n": "",
+                "o": "",
+                "p": "",
+                "q": "",
+                "r": "",
+                "s": "",
+                "t": "",
+                "u": "",
+                "v": "",
+                "w": "",
+                "x": "",
+                "y": "",
+                "z": "",
+                ".": "",
+                ";": "",
+                "/": "",
+                "#": ""
+                }
+            </default>
+        </key>
+
+        <key name="language" type="s">
+            <summary>System Language</summary>
+            <description>
+                Two leter ISO 639-1 language code (optionally with country after _).
+            </description>
+            <default>"en_GB"</default>
+        </key>
+
+        <key name="suspend-timeout" type="u">
+            <summary>Suspend timeout</summary>
+            <description>
+                Time in seconds of inactivity at which point the system goes into
+                suspend (or blanks screens if a bluetooth device is connected).
+            </description>
+            <range min="0" max="1000"/>
+            <default>300</default>
+        </key>
+
+        <!-- TODO: Confirm min/max and default -->
+        <key name="fast-phrase-timeout" type="u">
+            <summary>Fast phrase timeout</summary>
+            <description>
+                When entering Fast Phrase mode how long to wait in seconds until leaving
+                Fast Phrase mode.
+            </description>
+            <range min="1" max="1000"/>
+            <default>10</default>
+        </key>
+
+        <!-- DISPLAYS : The sensor can return values from 0 to 100.
+             0 in the dark, 2 in a low light room,
+             up to 1000 when directly lit using a phone LED -->
+
+        <key name="main-display-backlight" enum="com.tobychurchill.TypeNTalk.displaybacklight">
+            <summary>Main Display backlight mode</summary>
+            <description>
+                The mode which determines when the main screen backlights should be
+                enabled.
+            </description>
+            <default>'automatic'</default>
+        </key>
+
+        <key name="main-display-bright-threshold" type="u">
+            <summary>Main Display backlight threshold in bright environment</summary>
+            <description>
+                The ambient light level at and above which the main screen is in bright
+                mode.
+            </description>
+            <range min="1" max="1000"/>
+            <default>20</default>
+        </key>
+
+        <key name="main-display-bright-level" type="u">
+            <summary>Main Display backlight brightness in bright environment</summary>
+            <description>
+                The brightness of the main screen backlight when in bright mode.
+            </description>
+            <range min="0" max="100"/>
+            <default>100</default>
+        </key>
+
+        <key name="main-display-bright-hysteresis" type="u">
+            <summary>Main Display backlight hysteresis in bright environment</summary>
+            <description>
+                The amount by which the ambient light level must drop below the bright
+                environment threshold before returning to normal mode on the main screen.
+            </description>
+            <range min="0" max="1000"/>
+            <default>2</default>
+        </key>
+
+        <key name="main-display-normal-level" type="u">
+            <summary>Main Display backlight brightness in normal environment</summary>
+            <description>
+                The brightness of the main screen backlight when in normal mode.
+            </description>
+            <range min="0" max="100"/>
+            <default>60</default>
+        </key>
+
+        <key name="main-display-dim-threshold" type="u">
+            <summary>Main Display backlight threshold in dark environment</summary>
+            <description>
+                The ambient light level at and below which the main screen is in dim mode.
+            </description>
+            <range min="1" max="1000"/>
+            <default>10</default>
+        </key>
+
+        <key name="main-display-dim-level" type="u">
+            <summary>Main Display backlight brightness in dark environment</summary>
+            <description>
+                The brightness of the main screen backlight when in dim mode.
+            </description>
+            <range min="0" max="100"/>
+            <default>5</default>
+        </key>
+
+        <key name="main-display-dim-hysteresis" type="u">
+            <summary>Display backlight hysteresis in dark environment</summary>
+            <description>
+                The amount by which the ambient light level must rise above the dark
+                environment threshold before returning to normal mode.
+            </description>
+            <range min="0" max="1000"/>
+            <default>1</default>
+        </key>
+
+
+        <key name="companion-display-backlight" enum="com.tobychurchill.TypeNTalk.displaybacklight">
+            <summary>Companion Display backlight mode</summary>
+            <description>
+                The mode which determines when the companion screen backlights should be
+                enabled.
+            </description>
+            <default>'automatic'</default>
+        </key>
+
+        <key name="companion-display-bright-threshold" type="u">
+            <summary>Companion Display backlight threshold in bright environment</summary>
+            <description>
+                The ambient light level at and above which the companion screen is in bright
+                mode.
+            </description>
+            <range min="1" max="1000"/>
+            <default>20</default>
+        </key>
+
+        <key name="companion-display-bright-level" type="u">
+            <summary>Companion Display backlight brightness in bright environment</summary>
+            <description>
+                The brightness of the companion screen backlight when in bright mode.
+            </description>
+            <range min="0" max="100"/>
+            <default>100</default>
+        </key>
+
+        <key name="companion-display-bright-hysteresis" type="u">
+            <summary>Companion Display backlight hysteresis in bright environment</summary>
+            <description>
+                The amount by which the ambient light level must drop below the bright
+                environment threshold before returning to normal mode on the companion screen.
+            </description>
+            <range min="0" max="1000"/>
+            <default>2</default>
+        </key>
+
+        <key name="companion-display-normal-level" type="u">
+            <summary>Companion Display backlight brightness in normal environment</summary>
+            <description>
+                The brightness of the companion screen backlight when in normal mode.
+            </description>
+            <range min="0" max="100"/>
+            <default>60</default>
+        </key>
+
+        <key name="companion-display-dim-threshold" type="u">
+            <summary>Companion Display backlight threshold in dark environment</summary>
+            <description>
+                The ambient light level at and below which the companion screen is in dim mode.
+            </description>
+            <range min="1" max="1000"/>
+            <default>10</default>
+        </key>
+
+        <key name="companion-display-dim-level" type="u">
+            <summary>Companion Display backlight brightness in dark environment</summary>
+            <description>
+                The brightness of the companion screen backlight when in dim mode.
+            </description>
+            <range min="0" max="100"/>
+            <default>5</default>
+        </key>
+
+        <key name="companion-display-dim-hysteresis" type="u">
+            <summary>Display backlight hysteresis in dark environment</summary>
+            <description>
+                The amount by which the ambient light level must rise above the dark
+                environment threshold before returning to normal mode.
+            </description>
+            <range min="0" max="1000"/>
+            <default>1</default>
+        </key>
+
+        <key name="display2-timeout" type="u">
+            <summary>Secondary screen timeout</summary>
+            <description>
+                The number of seconds after end of speech before the secondary screen
+                turns off.
+            </description>
+            <range min="0" max="1000"/>
+            <default>120</default>
+        </key>
+
+        <key name="display2-font-size" type="u">
+            <summary>Secondary screen font size</summary>
+            <description>
+                The font size for the secondary screen which shows the text which is
+                being spoken.
+            </description>
+            <range min="5" max="100"/>
+            <default>96</default>
+        </key>
+
+        <key name="display-theme" type="s">
+            <summary>Theme</summary>
+            <description>
+                The theme which should be used.
+            </description>
+            <default>'Normal'</default>
+        </key>
+
+        <key name="display1-datetime" type='b'>
+            <summary>Show date and time</summary>
+            <description>
+                Whether date and time should be shown on the primary display.
+            </description>
+            <default>true</default>
+        </key>
+
+        <key name="main-font-size" type="u">
+            <summary>Main font size</summary>
+            <description>
+                The font size for the speaker text on the primary screen.
+            </description>
+            <range min="5" max="55"/>
+            <default>28</default>
+        </key>
+
+        <key name="prediction-font-size" type="u">
+            <summary>Prediction font size</summary>
+            <description>
+                The font size for the predictive text on the primary screen.
+            </description>
+            <range min="5" max="16"/>
+            <default>16</default>
+        </key>
+
+        <key name="icon-size" type="u">
+            <summary>Icon size</summary>
+            <description>
+                The size for the icons which is shown on the primary screen. Changes to
+                the icon size will also affect the date and time font size.
+            </description>
+            <range min="5" max="16"/>
+            <default>16</default>
+        </key>
+
+        <key name="menuname-font-size" type="u">
+            <summary>Menu title font size</summary>
+            <description>
+                The font size for the menu title which is shown on the primary screen.
+            </description>
+            <range min="5" max="18"/>
+            <default>18</default>
+        </key>
+
+        <key name="menuitem-font-size" type="u">
+            <summary>Menu item font size</summary>
+            <description>
+                The font size for menu items which are shown on the primary screen.
+            </description>
+            <range min="5" max="12"/>
+            <default>12</default>
+        </key>
+
+        <key name="symbol-table-timeout" type="u">
+            <summary>Symbol table timeout</summary>
+            <description>
+                How long in seconds the symbol table should wait before closing.
+            </description>
+            <default>10</default>
+            <range min="1" max="1000"/>
+        </key>
+
+        <key name="menu-timeout" type="u">
+            <summary>Menu timeout</summary>
+            <description>
+                How long in seconds the menu should wait before backing up a step.
+            </description>
+            <default>10</default>
+            <range min="1" max="1000"/>
+        </key>
+
+        <key name="menu-permissions" type="a{su}">
+            <summary>Menu permissions</summary>
+            <description>
+                An array of bytes representing permissions of each menu page.
+                Bit 0 for user mode, bit 1 for advanced mode, bit 2 for support mode.
+                (Engineering mode gets all menus always).
+            </description>
+            <default>{"date_time_menu": 6,
+                "hms_box": 4,
+                "time_format_menu": 4,
+                "mss_box": 4,
+                "set_date_box": 6,
+                "set_time_box": 6,
+                "date_format_grid": 4,
+                "timezone_grid": 6,
+                "hour_format_grid": 4,
+                "show_clock_grid": 6,
+                "show_seconds_grid": 4,
+                "voice_grid": 6,
+                "select_voice_grid": 6,
+                "announce_voice_grid": 6,
+                "keyboard_grid": 6,
+                "keyboard_layout_menu_grid": 6,
+                "keyboard_layout_grid": 6,
+                "kb_tremor_filter_grid": 6,
+                "kb_repeat_delay_grid": 6,
+                "kb_repeat_speed_grid": 6,
+                "kb_minimum_keypress_grid": 6,
+                "kb_long_keypress_grid": 6,
+                "kb_key_click_grid": 6,
+                "kb_backlight_level_grid": 6,
+                "kb_backlight_timeout_grid": 6,
+                "kb_backlight_threshold_grid": 6,
+                "import_keyboard_layout_grid": 6,
+                "export_keyboard_layout_grid": 6,
+                "keyboard_settings_grid": 6,
+                "keyboard_backlight_grid": 6,
+                "scanning_grid": 6,
+                "scan_pattern_grid": 6,
+                "scan_sound_grid": 6,
+                "any_key_scanning_grid": 6,
+                "scan_speed_grid": 6,
+                "announce_volume_grid": 6,
+                "scan_volume_grid": 6,
+                "scan_volume_menu_grid": 6,
+                "scan_timeout_grid": 6,
+                "sound_grid": 7,
+                "keyboard_sound_grid": 6,
+                "volume_grid": 7,
+                "mixer_grid": 7,
+                "speaker_grid": 7,
+                "headphone_grid": 7,
+                "internal_grid": 7,
+                "linein_grid": 7,
+                "btin_grid": 7,
+                "btout_grid": 7,
+                "keyboard_volume_grid": 7,
+                "announce_mix_grid": 7,
+                "announcements_grid": 7,
+                "support_grid": 7,
+                "advisor_grid": 7,
+                "tech_support_grid": 7,
+                "updates_grid": 6,
+                "system_grid": 7,
+                "dictionary_grid": 6,
+                "fast_phrase_grid": 6,
+                "fast_phrase_browse_grid": 6,
+                "fast_phrase_edit_grid": 6,
+                "fast_phrase_import_grid": 6,
+                "fast_phrase_export_grid": 6,
+                "active_dictionaries_grid": 6,
+                "user_dictionary_grid": 6,
+                "blacklist_grid": 4,
+                "exceptions_grid": 6,
+                "predictive_text_grid": 6,
+                "autolearn_level_grid": 7,
+                "user_dictionary_browse_grid": 7,
+                "user_dictionary_add_grid": 7,
+                "user_dictionary_import_grid": 7,
+                "user_dictionary_export_grid": 7,
+                "user_dictionary_clear_grid": 7,
+                "blacklist_browse_grid": 7,
+                "exceptions_browse_grid": 7,
+                "blacklist_add_grid": 7,
+                "exceptions_add_grid": 7,
+                "blacklist_clear_grid": 7,
+                "exceptions_clear_grid": 7,
+                "blacklist_import_grid": 7,
+                "blacklist_export_grid": 7,
+                "exceptions_import_grid": 7,
+                "exceptions_export_grid": 7,
+                "language_grid": 4,
+                "display_backlight_grid": 7,
+                "display_grid": 7,
+                "displays_grid": 7,
+                "companion_display_grid": 7,
+                "main_display_grid": 7,
+                "bright_grid": 7,
+                "normal_grid": 7,
+                "dim_grid": 7,
+                "textsize_grid": 7,
+                "displays_grid1": 7,
+                "theme_grid": 7,
+                "show_datetime_grid": 7,
+                "bright_threshold_grid": 6,
+                "bright_level_grid": 6,
+                "bright_hysteresis_grid": 0,
+                "normal_level_grid": 6,
+                "dim_threshold_grid": 6,
+                "dim_level_grid": 6,
+                "dim_hysteresis_grid": 0,
+                "companion_timeout_grid": 7,
+                "companion_fontsize_grid": 7,
+                "main_text_fontsize_grid": 7,
+                "prediction_fontsize_grid": 7,
+                "icon_size_grid": 7,
+                "menu_name_fontsize_grid": 7,
+                "menu_item_fontsize_grid": 7,
+                "help_fontsize_grid": 7,
+                "main_fontsizes_grid": 7,
+                "menu_fontsizes_grid": 7,
+                "predictive_text_enabled_grid": 7,
+                "bluetooth_grid": 6,
+                "bluetooth_enabled_grid": 6,
+                "bt_pairing_grid": 6,
+                "send_sms_grid": 6,
+                "phone_call_grid": 6,
+                "power_menu": 7,
+                "power_low_level_grid": 7,
+                "power_alarm_level_grid": 7,
+                "power_action_level_grid": 7,
+                "menu_timeout_grid": 7 }
+            </default>
+        </key>
+
+        <key name="help-font-size" type="u">
+            <summary>Help font size</summary>
+            <description>
+                The font size for the help which is shown on the primary screen.
+            </description>
+            <range min="5" max="10"/>
+            <default>10</default>
+        </key>
+
+        <key name="osd-timeout" type="u">
+            <summary>OSD Timeout</summary>
+            <description>
+                How long in seconds the on screen display should be visible.
+            </description>
+            <default>1</default>
+        </key>
+
+        <!-- POWER -->
+
+        <key name="power-alarm" type="u">
+            <summary>Power-alarm</summary>
+            <description>
+                The battery level at which to show a power alarm. This is a level
+                at which to inform the user that the battery is low.
+            </description>
+            <range min="0" max="100"/>
+            <default>10</default>
+        </key>
+
+        <key name="power-low" type="u">
+            <summary>Power-low</summary>
+            <description>
+                The battery level at which to show a low power alarm and play a
+                sound. This is usually just enough for the user to find a power
+                plug and recharge the device.
+            </description>
+            <range min="0" max="100"/>
+            <default>5</default>
+        </key>
+
+        <key name="power-action" type="u">
+            <summary>Power-action</summary>
+            <description>
+                The battery level at which an action of shutting down is
+                triggered. If 0 no action will be triggered.
+            </description>
+            <range min="0" max="100"/>
+            <default>3</default>
+        </key>
+
+    </schema>
+</schemalist>

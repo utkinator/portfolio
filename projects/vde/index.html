@@ -1,0 +1,801 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/jquery-ui-1.8.22.custom.css">
+    <link rel="stylesheet" href="css/codemirror.css">
+</head>
+<body>
+
+<div id="wrapper"></div>
+
+<!-- Templates -->
+<script type="text/template" id="page-template">
+
+</script>
+
+<script type="text/template" id="ui-layout-template">
+    <% if (header.visible) { %>
+    <header class="ui-layout-header" id="<%= header.id %>"></header>
+    <% } %>
+    <% if (content.visible) { %>
+    <div class="ui-layout-content clearfix" id="<%= content.id %>">
+        <% if (type == '3c') { %>
+        <div class="col-wrapper">
+            <% } %>
+            <article class="col-main" id="<% if (colmain_id) { %><%= colmain_id %><% } %>"></article>
+            <% if (type == '3c') { %>
+            <aside class="ui-sidebar col-left" id="<% if (colleft_id) { %><%= colleft_id %><% } %>"></aside>
+            <% } %>
+            <% if (type == '2cl') { %>
+            <aside class="ui-sidebar col-left" id="<% if (colleft_id) { %><%= colleft_id %><% } %>"></aside>
+            <% } %>
+            <% if (type == '2cr') { %>
+            <aside class="ui-sidebar col-right" id="<% if (colright_id) { %><%= colright_id %><% } %>"></aside>
+            <% } %>
+            <% if (type == '3c') { %>
+        </div>
+        <aside class="ui-sidebar col-right" id="<% if (colright_id) { %><%= colright_id %><% } %>"></aside>
+        <% } %>
+    </div>
+    <% } %>
+    <% if (footer.visible) { %>
+    <footer class="ui-layout-footer" id="<%= footer.id %>"></footer>
+    <% } %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-grid-template">
+    <% for (var i=0; i
+    <items; i++) { %>
+    <% if (items_layout) { %>
+    <div class="grid-<%= items_layout[i] %>" id="<% if (items_ids) { %><%= items_ids[i] %><% } %>"></div>
+    <% } else { %>
+    <div class="grid-<%= type %>" id="<% if (items_ids) { %><%= items_ids[i] %><% } %>"></div>
+    <% } %>
+    <% } %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-add-grid-template">
+    <form action="#" method="post" id="add-grid-form">
+        <label for="grid-layout">
+            <span>Add new grid</span>
+            <input type="text" name="layout" value="" id="grid-layout" placeholder="example: 3 3 3 3" maxlength="24"/>
+            <span id="grid-layout-qty">12</span>
+        </label>
+        <label for="grid-is-collapsed">
+            <input type="checkbox" name="is_collapsed" value="collapsed" id="grid-is-collapsed"/>
+            <span>collapsed</span>
+        </label>
+    </form>
+</script>
+
+<script type="text/template" id="note-template">
+    <div class="note-title"><strong contenteditable="true"><%= title %></strong> <span class="num">#<%= num %> of <%= qty %><% if (!isNew) { %> saved <% } %> </span>
+    </div>
+    <div class="note-content" contenteditable="true"><%= content %></div>
+    <div class="date">Created <strong><%= date %></strong> at <strong><%= time %></strong></div>
+    <span class="pin" title="pin note"></span>
+    <span class="close" title="close note"></span>
+</script>
+
+<script type="text/template" id="menu-template">
+    <div class="menu-content">
+        <ul class="controls clearfix">
+            <li class="controls-item"><a href="#" class="button" id="save_deskboard"><i class="icon-certificate"></i>Save
+                Deskboard</a></li>
+            <li class="controls-item"><a href="#" class="button" id="save_preset">Save Deskboard as preset</a></li>
+            <li class="controls-item"><a href="#" class="button" id="load_deskboard">Load Deskboard</a></li>
+            <li class="controls-item"><a href="#" class="button" id="clear_deskboard">Clear Deskboard</a></li>
+            <li class="controls-item"><a href="#" class="button" id="clear_saved_deskboard">Delete saved Deskboard</a>
+            </li>
+            <li class="controls-item"><a href="#" class="button" id="get_set_deskboard_code">Get/Set Deskboard code</a>
+            </li>
+
+
+            <li class="controls-item"><a href="#" class="button" id="ruler">Ruler</a></li>
+
+            <li class="controls-item"><a href="#" class="button" id="new_note">New note</a></li>
+            <li class="controls-item"><a href="#" class="button" id="load_notes">Load notes</a></li>
+
+            <li class="controls-item"><a href="#" class="button" id="toggle_view">Toggle Layouts/Grids Transparency</a>
+            </li>
+            <li class="controls-item"><a href="#" class="button" id="toggle_ui_controls">Toggle UI Controls
+                Visibility</a></li>
+
+            <li class="controls-item"><a href="#" class="button" id="get_code">Get Code</a></li>
+        </ul>
+        <!--<div class="menu-content-inner">-->
+
+        <!--</div>-->
+    </div>
+    <span class="menu-toggle">►</span>
+</script>
+
+<script type="text/template" id="sidebar-template">
+    <header class="sidebar-header">
+        <ul class="elems clearfix">
+            <li class="elems-item"><a href="#" data-ui_type="layout" class="button">Layouts</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="grid" class="button">Grids</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="basic" class="button">Basics</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="table" class="button">Tables</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="tab" class="button">Tabs</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="nav" class="button">Navigations</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="message" class="button">Messages</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="breadcrumbs" class="button">Breadcrumbs</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="pagination" class="button">Paginations</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="button" class="button">Buttons</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="popup" class="button">Popups</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="form" class="button">Forms</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="tags" class="button">Tags</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="tooltip" class="button">Tooltips</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="rating" class="button">Ratings</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="util" class="button">Utilities</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="placeholder" class="button">Placeholders</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="background" class="button">Backgrounds</a></li>
+            <li class="elems-item"><a href="#" data-ui_type="preset" class="button">Presets</a></li>
+        </ul>
+    </header>
+    <div class="sidebar-content">
+        <p class="no-content">Choose UI element</p>
+    </div>
+    <span class="sidebar-toggle">◄</span>
+</script>
+
+<script type="text/template" id="ui-basic-template">
+    <% if (isValuable) { %>
+    <span class="value"><%= value %></span>
+    <% } else { %>
+    <%= value %>
+    <% } %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-button-template">
+    <span title="dblclick to edit"><%= label %></span>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-button-group-template">
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-button-dropdown-template">
+    <% if (type == 'splitted') { %>
+    <a href="#" class="ui-button">
+        <span>Some link</span>
+    </a>
+    <% } %>
+    <div class="ui-button" data-toggle="dropdown">
+        <% if (type != 'splitted') { %><span>Toggle dropdown<% } %><span class="arrow">▼</span><% if (type != 'splitted') { %></span><%
+        } %>
+    </div>
+    <ul class="ui-dropdown-menu<% if (type) { %> ui-dropdown-menu-<%= type %><% } %>">
+        <li><span>Create New Wishlist</span></li>
+        <li class="selected"><span>List item 1</span></li>
+        <li><span>List item 2</span></li>
+    </ul>
+
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-message-template">
+    <% if (header) { %>
+    <header class="ui-message-header"><%= header %></header>
+    <% } %>
+    <%= message %>
+    <% if (footer) { %>
+    <footer class="ui-message-footer">
+        <%= footer %>
+        <div class="buttons-set" id="btn-set-<%= id %>">
+            <button type="button" class="ui-button ui-button-icon ui-button-ok"><span>OK</span></button>
+            <button type="button" class="ui-button ui-button-icon ui-button-cancel"><span>Cancel</span></button>
+        </div>
+    </footer>
+    <% } %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-table-template">
+    <% if (caption) { %>
+    <caption>
+        <%= caption %>
+        <% if (isClosable) { %>
+        <span class="close"></span>
+        <% } %>
+    </caption>
+    <% } %>
+
+    <thead>
+    <tr>
+        <th id="th1<%= id %>">Country</th>
+        <th id="th2<%= id %>">Total area</th>
+        <th id="th3<%= id %>">Land area</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <td id="tdf1<%= id %>">example 1</td>
+        <td id="tdf2<%= id %>">example 2</td>
+        <td id="tdf3<%= id %>">example 2</td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+        <td id="td1<%= id %>">Denmark</td>
+        <td id="td2<%= id %>">43,070</td>
+        <td id="td3<%= id %>">43,070</td>
+    </tr>
+    <tr>
+        <td id="td4<%= id %>">Finland</td>
+        <td id="td5<%= id %>">337,030</td>
+        <td id="td6<%= id %>">305,470</td>
+    </tr>
+    </tbody>
+</script>
+
+<script type="text/template" id="ui-popup-template">
+    <% if (header) { %>
+    <header class="ui-popup-header" id="ph-<%= id %>">
+        <%= header %>
+    </header>
+    <% } %>
+    <div class="ui-popup-content" id="pc-<%= id %>">
+        Lorem ipsum dolor sit amet, tantus nata genere. Tyrium coniugem in lucem genero quod eam ad nomine, accedens est
+        se ad per accipere filia puella. Magna duobus consolabor potest ei primum intus. Dicens mea Stet consequat
+        Verena est in.
+    </div>
+    <% if (footer) { %>
+    <footer class="ui-popup-footer" id="pf-<%= id %>">
+        <div class="buttons-set" id="pbs-<%= id %>">
+            <button type="button" class="ui-button ui-button-icon ui-button-ok"><span>OK</span></button>
+            <button type="button" class="ui-button ui-button-icon ui-button-cancel"><span>Cancel</span></button>
+        </div>
+    </footer>
+    <% } %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-tab-template">
+    <% if(type != 'below') { %>
+    <ul class="ui-tab-nav">
+        <li class="active">
+            <a href="#tab1<%= id %>" data-toggle="tab">
+                <% if (value) { %>
+                <%= value %> 1
+                <% } else { %>
+                Section 1
+                <% } %>
+            </a>
+        </li>
+        <li>
+            <a href="#tab2<%= id %>" data-toggle="tab">
+                <% if (value) { %>
+                <%= value %> 2
+                <% } else { %>
+                Section 2
+                <% } %>
+            </a>
+        </li>
+    </ul>
+    <% } %>
+    <div class="ui-tab-content">
+        <div class="tab-pane active" id="tab1<%= id %>">
+            <p>I'm in Section 1.</p>
+        </div>
+        <div class="tab-pane" id="tab2<%= id %>">
+            <p>Howdy, I'm in Section 2.</p>
+        </div>
+    </div>
+    <% if(type == 'below') { %>
+    <ul class="ui-tab-nav">
+        <li class="active">
+            <a href="#tab1<%= id %>" data-toggle="tab">Section 1</a>
+        </li>
+        <li>
+            <a href="#tab2<%= id %>" data-toggle="tab">Section 2</a>
+        </li>
+    </ul>
+    <% } %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-accordion-template">
+    <div class="ui-accordion-group">
+        <div class="ui-accordion-heading">
+            <a class="ui-accordion-toggle" data-toggle="collapse" data-parent="#<%= id %>" href="#tab1<%= id %>">
+                Collapsible Group Item #1
+            </a>
+        </div>
+        <div id="tab1<%= id %>" class="ui-accordion-body collapse">
+            <div class="ui-accordion-inner" id="inner1<%= id %>">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                of them accusamus labore sustainable VHS.
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-group">
+        <div class="ui-accordion-heading">
+            <a class="ui-accordion-toggle" data-toggle="collapse" data-parent="#<%= id %>" href="#tab2<%= id %>">
+                Collapsible Group Item #2
+            </a>
+        </div>
+        <div id="tab2<%= id %>" class="ui-accordion-body collapse">
+            <div class="ui-accordion-inner" id="inner2<%= id %>">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                of them accusamus labore sustainable VHS.
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-group">
+        <div class="ui-accordion-heading">
+            <a class="ui-accordion-toggle" data-toggle="collapse" data-parent="#<%= id %>" href="#tab3<%= id %>">
+                Collapsible Group Item #3
+            </a>
+        </div>
+        <div id="tab3<%= id %>" class="ui-accordion-body in collapse">
+            <div class="ui-accordion-inner" id="inner3<%= id %>">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                of them accusamus labore sustainable VHS.
+            </div>
+        </div>
+    </div>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+<script type="text/template" id="ui-pagination-template">
+    <p class="amount">Items 1 to 9 of 12 total</p>
+    <ul>
+        <li><a class="ui-button" href="#" title="Previous">Previous</a></li>
+        <li><a class="ui-button" href="#">1</a></li>
+        <li class="current"><span class="ui-button ui-button-special">2</span></li>
+        <li><a class="ui-button" href="#">3</a></li>
+        <li><a class="ui-button" href="#" title="Next">Next</a></li>
+    </ul>
+    <div class="limiter">
+        <label>Show</label>
+        <select>
+            <option value="" selected="selected">9</option>
+            <option value="">15</option>
+            <option value="">30</option>
+        </select>per page
+    </div>
+    <% if (isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-breadcrumbs-template">
+    <ul>
+        <li class="home">
+            <a href="#" title="">Home</a>
+        </li>
+        <li>
+            <a href="#" title="">Countries</a>
+        </li>
+        <li class="current">
+            <strong>Namibia</strong>
+        </li>
+    </ul>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+
+<script type="text/template" id="ui-placeholder-template">
+    <span class="sizes"><% if (styles.width) { %><%= styles.width %> / <% } %><% if (styles.height) { %><%= styles.height %><% } %></span>
+    <% if (isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-nav-template">
+    <% if (type == 'inline') { %>
+    <ul class="ui-menu level-top">
+        <li class="first active">
+            <a href="#" class=""><span>Furniture</span></a>
+        </li>
+        <li>
+            <a href="#" class=""><span>Electronics</span></a>
+        </li>
+        <li>
+            <a href="#" class=""><span>Apparel</span></a>
+        </li>
+        <li class="last">
+            <a href="#" class=""><span>Gift Cards</span></a>
+        </li>
+    </ul>
+    <% } else { %>
+    <ul class="ui-menu level-top clearfix">
+        <li class="first parent active">
+            <a href="#" class=""><span>Furniture</span></a>
+            <ul class="level-1">
+                <li class="first">
+                    <a href="#"><span>Living Room</span></a>
+                </li>
+                <li class="last">
+                    <a href="#"><span>Bedroom</span></a>
+                </li>
+            </ul>
+        </li>
+        <li class="parent">
+            <a href="#"><span>Electronics</span></a>
+            <ul class="level-1">
+                <li class="first">
+                    <a href="#"><span>Cell Phones</span></a>
+                </li>
+                <li class="parent">
+                    <a href="#"><span>Cameras</span></a>
+                    <ul class="level-2">
+                        <li class="first parent">
+                            <a href="#"><span>Accessories</span></a>
+                            <ul class="level-3">
+                                <li class="first parent">
+                                    <a href="#"><span>Accessories</span></a>
+                                    <ul class="level-4">
+                                        <li class="first">
+                                            <a href="#"><span>Accessories</span></a>
+                                        </li>
+                                        <li class="last">
+                                            <a href="#"><span>Digital Cameras</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="last">
+                                    <a href="#"><span>Digital Cameras</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="last">
+                            <a href="#"><span>Digital Cameras</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="last parent">
+                    <a href="#"><span>Computers</span></a>
+                    <ul class="level-2">
+                        <li class="first">
+                            <a href="#"><span>Build Your Own</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span>Laptops</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="parent">
+            <a href="#" class=""><span>Apparel</span></a>
+            <ul class="level-1">
+                <li class="first">
+                    <a href="#"><span>Shirts</span></a>
+                </li>
+                <li class="last parent">
+                    <a href="#"><span>Shoes</span></a>
+                    <ul class="level-2">
+                        <li class="first">
+                            <a href="#"><span>Mens</span></a>
+                        </li>
+                        <li class="last">
+                            <a href="#"><span>Womens</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="last">
+            <a href="#" class=""><span>another long category with products </span></a>
+        </li>
+    </ul>
+    <% } %>
+
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="utils-lorem-template">
+    <div class="lorem-content">
+        <% if (value) { %>
+        <%= value %>
+        <% } else { %>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus mauris sed lectus viverra vel varius dui
+        commodo. Nunc commodo molestie cursus. Morbi ac nunc id felis vulputate hendrerit ac non leo. Aenean bibendum
+        rutrum lorem non porttitor. Proin aliquam dapibus mattis. Vivamus vel libero et orci gravida sodales. Ut vel
+        velit dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+        Vivamus aliquet vestibulum massa vitae ullamcorper. Morbi aliquam dictum fringilla. Duis felis velit,
+        sollicitudin quis accumsan sed, lobortis ut nunc. Sed consequat placerat tellus, quis ultricies metus viverra
+        sit amet. Suspendisse auctor quam id nisl semper consequat. Nulla sollicitudin lobortis pharetra. Mauris
+        vestibulum, dui et hendrerit vehicula, nisi justo venenatis purus, ut hendrerit dolor nisi ac dolor. Praesent id
+        elit est, non pellentesque felis.
+        <% } %>
+    </div>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-tags-template">
+    <% _.each(elems, function(elem) { %>
+    <li><a href="#" style="font-size:<%= elem.size %>%;"><%= elem.name %></a><span>(<%= elem.qty %>)</span></li>
+    <% }); %>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="utils-dummy-template">
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ruler-template">
+    <div class="ruler-content">
+        <p class="ruler-width"><%= width %> px / <%= height %> px</p>
+    </div>
+</script>
+
+<script type="text/template" id="styler-template">
+    <i class="icon-pencil" title="edit <%= ui_type %> styles"></i>
+    <div class="styler-content">
+        <h4>Change style for <i><%= ui_type %></i><br/> #<%= id %></h4>
+        <!--<i class="icon-backward" title="reset styles"></i>-->
+
+        <div class="styles-new">
+            <i class="icon-plus-sign" title="Add new style"></i>
+
+            <div class="styles-new-props hidden">
+                <form action="#" method="post" class="styles-form">
+                    <input type="text" placeholder="property" value="" list="css_props" class="new-prop"
+                           name="property"/>
+                    <input type="text" placeholder="value" value="" class="new-value" name="value"/>
+
+                    <datalist id="css_props">
+                        <option value="position">
+                        <option value="top">
+                        <option value="right">
+                        <option value="left">
+                        <option value="bottom">
+                        <option value="display">
+                        <option value="overflow">
+                        <option value="box-sizing">
+                        <option value="width">
+                        <option value="height">
+                        <option value="padding">
+                        <option value="border">
+                        <option value="border-radius">
+                        <option value="margin">
+                        <option value="background">
+                        <option value="background-color">
+                        <option value="color">
+                        <option value="font-family">
+                        <option value="font-size">
+                        <option value="font-weight">
+                        <option value="line-height">
+                        <option value="text-align">
+                        <option value="text-decoration">
+                        <option value="text-shadow">
+                        <option value="vertical-align">
+                        <option value="overflow">
+                        <option value="visible">
+                        <option value="clear">
+                        <option value="cursor">
+                        <option value="list-style">
+                        <option value="float">
+                        <option value="z-index">
+                    </datalist>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="ui-tooltip-template">
+    <span class="help"><%= label %></span>
+    <div class="ui-tooltip-content"><%= content %></div>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="ui-rating-template">
+    <div class="ui-rating" style="width:<%= width %>%"></div>
+    <% if(isClosable) { %>
+    <span class="close" title="close <%= ui_type %>"/>
+    <% } %>
+</script>
+
+<script type="text/template" id="styler-menu-template">
+    {
+    <% for(var style in styles) {
+    if(styles.hasOwnProperty(style)) { %>
+    <li class="item">
+        <i class="icon-remove" title="remove style"></i>
+        <%
+        var regexp =
+        /(#[0-9a-f]{6}|#[0-9a-f]{3})|(rgb\((\d+),\s*(\d+),\s*(\d+)\))|(rgba\((\d+),\s*(\d+),\s*(\d+),\s*((\d)|(.\d))*\))/gi;
+        %>
+        <% if (regexp.test(styles[style])) { var color = styles[style].match(regexp); %>
+        <% if (color) { %>
+        <div class="color-icon" title="color" style="background-color:<%= color %>"></div>
+        <% } %>
+        <% } %>
+        <dl>
+            <dt><%= style %></dt>
+            :
+            <dd><span title="double click to edit"><%= styles[style] %></span></dd>
+            ;
+        </dl>
+    </li>
+    <% }} %>
+    }
+</script>
+
+<script type="text/template" id="error-template">
+    <div class="error-content">
+        <i class="error-icon"></i>
+
+        <div class="error-description">
+            <p class="error-text"><%= message %></p>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="util-backgrounder-template"></script>
+<script type="text/template" id="preset-template"></script>
+
+<script type="text/template" id="getcoder-template">
+    <div class="ui-popup ui-popup-modal ui-popup-getcoder">
+        <header class="ui-popup-header">
+            Getcoder prepared code for you :)
+        </header>
+
+        <div class="ui-popup-content">
+            <div class="ui-tab">
+                <ul class="ui-tab-nav">
+                    <li class="active">
+                        <a href="#html_code" data-toggle="tab" data-type="html">HTML code</a>
+                    </li>
+                    <li>
+                        <a href="#css_code" data-toggle="tab" data-type="css">CSS code</a>
+                    </li>
+                </ul>
+
+                <div class="ui-tab-content">
+                    <div class="tab-pane active" id="html_code">
+                        <textarea cols="170" rows="35" id="html"><%= htmlCode %></textarea>
+                    </div>
+                    <div class="tab-pane" id="css_code">
+                        <label for="all_css" id="i_have_mui"><input type="checkbox" id="all_css" <% if
+                            (isMUIstylesEnabled) { %>checked="checked"<% } %>> I have MUI Styles</label>
+
+                        <textarea cols="170" rows="35" id="css"><%= cssCode %></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="ui-popup-footer">
+            <div class="buttons-set clearfix">
+                <button type="button" class="ui-button ui-button-icon ui-button-cancel"><span>Cancel</span></button>
+            </div>
+        </footer>
+        <span class="close" title="close getcoder"></span>
+    </div>
+</script>
+
+<script type="text/template" id="deskboard-code-template">
+    <div class="ui-popup ui-popup-modal ui-popup-deskboard-code">
+        <div class="ui-popup-content">
+            <div class="ui-tab">
+                <ul class="ui-tab-nav">
+                    <li class="active">
+                        <a href="#get_desk_code" data-toggle="tab" data-type="get">Get deskboard code</a>
+                    </li>
+                    <li>
+                        <a href="#set_desk_code" data-toggle="tab" data-type="set">Set deskboard code</a>
+                    </li>
+                </ul>
+
+                <div class="ui-tab-content">
+                    <div class="tab-pane active" id="get_desk_code">
+                        <textarea cols="170" rows="20" id="desk_code" readonly="readonly"><%= desk_code %></textarea>
+                    </div>
+                    <div class="tab-pane" id="set_desk_code">
+                        <textarea cols="170" rows="20" id="new_desk_code"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="ui-popup-footer">
+            <div class="buttons-set clearfix">
+                <button type="button" class="ui-button ui-button-icon ui-button-cancel"><span>Cancel</span></button>
+            </div>
+        </footer>
+        <span class="close" title="close getcoder"></span>
+    </div>
+</script>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+
+<script type="text/javascript" src="js/underscore.js"></script>
+<script type="text/javascript" src="js/backbone.js"></script>
+<script type="text/javascript" src="js/localStorage.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+
+<script type="text/javascript" src="js/plugins/jquery.tipsy.js"></script>
+<script type="text/javascript" src="js/plugins/html2canvas.js"></script>
+
+<!-- mvc modules -->
+<script type="text/javascript" src="js/mvc/ui.js"></script>
+<script type="text/javascript" src="js/mvc/page.js"></script>
+<script type="text/javascript" src="js/mvc/deskboard.js"></script>
+<script type="text/javascript" src="js/mvc/menu.js"></script>
+<script type="text/javascript" src="js/mvc/sidebar.js"></script>
+<script type="text/javascript" src="js/mvc/sidebar_menu.js"></script>
+<script type="text/javascript" src="js/mvc/error.js"></script>
+<script type="text/javascript" src="js/mvc/note.js"></script>
+<script type="text/javascript" src="js/mvc/ruler.js"></script>
+<script type="text/javascript" src="js/mvc/styler.js"></script>
+<script type="text/javascript" src="js/mvc/backgrounder.js"></script>
+<script type="text/javascript" src="js/mvc/getcoder.js"></script>
+<script type="text/javascript" src="js/mvc/presets.js"></script>
+
+<script type="text/javascript" src="js/mvc/app.js"></script>
+
+<!-- plugins -->
+<script type="text/javascript" src="js/plugins/jquery.tabs.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.dropdowns.js"></script>
+
+<!-- other scripts -->
+<script type="text/javascript" src="js/plugins/codemirror.js"></script>
+<script type="text/javascript" src="js/plugins/codemirror_modes/css.js"></script>
+<script type="text/javascript" src="js/plugins/codemirror_modes/htmlmixed.js"></script>
+<script type="text/javascript" src="js/plugins/codemirror_modes/javascript.js"></script>
+<script type="text/javascript" src="js/plugins/codemirror_modes/xml.js"></script>
+<script type="text/javascript" src="js/plugins/codemirror_modes/formatting.js"></script>
+
+</body>
+</html>

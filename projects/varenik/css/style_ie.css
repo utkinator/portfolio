@@ -1,0 +1,52 @@
+* html #wrapper,
+* html #footer {
+	width: expression(
+	(document.compatMode && document.compatMode == 'CSS1Compat') ?
+	(document.documentElement.clientWidth < 1000 ? "1000px" :
+	(document.documentElement.clientWidth > 1400 ? "1400px" : "auto")) :
+	(document.body.clientWidth > 1000 ? "1000px" :
+	(document.body.clientWidth < 1400 ? "1400px" : "auto")));
+}
+
+.f-main .f-list .fl-item .h3, * html .f-main .f-list .fl-item .h3{padding-left:0;}
+.f-main .f-list .fl-item .h3 span sub, .f-main .f-list .fl-item .h3 span sup{top:27px;}
+* html .f-main .f-list .fl-item{padding-left:1%;}
+* html .f-main .f-list .m-cont ul{padding-left:5%;}
+* html .f-main .f-list .fl-item .h3{padding-left:25px;}
+* html .f-main .f-list .fl-item .h3 span{line-height:14px;}
+* html .f-main .f-list .fl-item .h3 span sub, *html .f-main .f-list .fl-item .h3 span sup{top:0;}
+.pp, * html .pp{padding-top:35px;}
+.pp img, * html .pp img{top:-15px; }
+.v_menu li a img, * html .v_menu li a img{position:relative; top:8px;}
+.by_notes, * html .by_notes{padding-top:60px;}
+.by_notes sup, * html .by_notes sup{bottom:12px;}
+.s_wrap{zoom: 1; *display:inline;}
+
+*html .h_menu li{width:15%; margin-right:1%;}
+*html .h_menu li a span{line-height:15px;}
+*html .h_menu li a.active{text-align:center;}
+*html .h_menu li.act{margin-right:5%;}
+*html .s_inp{position:relative; top:-2px;}
+*html .search_wrap{position:relative;}
+*html .wb-l, *html .wb-r{bottom:-2px;}
+*html .s_wrap, *html .s_wrap ul, *html .s_wrap ul li a{display:inline; zoom:1;}
+*html .wb-r, *html .wt-r{right:-1px;}
+*html .search_wrap sub{position:relative; left:3px;}
+*html .third_menu ul li a.active, *html .third_menu ul li a:hover{top:6px;}
+*html .third_menu ul li a.active span, *html .third_menu ul li a:hover span{top:-6px;}
+*html #content .pc{left:-74px;}
+*html .link .ct-l, *html .link .ct-r, *html .link .cb-l, *html .link .cb-r{overflow:hidden; display:none;}
+*html .link:hover .ct-l, *html .link:hover .ct-r, *html .link:hover .cb-l, *html .link:hover .cb-r{display:block;}
+*html .sb-l, *html .sb-r{bottom:-1px;}
+*html .p-n{padding-left:8%;}
+*html .c_qw .pc{top:0 !important;}
+*html .wt-l, *html .wt-r, *html .wb-l, *html .wb-r{overflow:hidden;}
+*html .s-bl, *html .s-br{bottom:-2px;}
+*html .third_menu ul li a.active{line-height:22px;}
+*html .third_menu ul li a.active sup{right:11px;}
+*html .third_menu ul li a:hover span{padding-right:0; font-weight:normal; zoom:1;}
+*html .third_menu ul li{margin:0 0 0 10px;}
+*html .third_menu{padding-top:1px;}
+*html .tabs .tt li.active{}
+*html .tabs .tt li div{display:inline; zoom:1;}
+*html .btn_submit{margin-left:0;}

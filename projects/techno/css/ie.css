@@ -1,0 +1,21 @@
+* html #wrapper {
+	width: expression(
+	(document.compatMode && document.compatMode == 'CSS1Compat') ?
+	(document.documentElement.clientWidth < 1000 ? "1000px" :
+	(document.documentElement.clientWidth > 1200 ? "1200px" : "auto")) :
+	(document.body.clientWidth > 1000 ? "1000px" :
+	(document.body.clientWidth < 1200 ? "1200px" : "auto")));
+}
+
+* html .logo, * html .tm-wrapper, * html .t-phones{display:inline-block;}
+* html .an-bl, * html .an-br{bottom:-1px;}
+* html .jcarousel-container{width:100%; overflow:hidden;}
+
+.left-menu .an-bl, .left-menu .an-br{bottom:1px;}
+.left-menu .active a{position:relative; top:4px;}
+.r-block{margin-left:0; left:-33px;}
+.pw, .pagination{float:left; width:auto;}
+.prod-list{width:auto;}
+.form table{width:100%; margin-left:-25%;}
+.form table td{width:48%;}
+.form .i_block{width:100%;}

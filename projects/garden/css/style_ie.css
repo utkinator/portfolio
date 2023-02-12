@@ -1,0 +1,26 @@
+* html #wrapper,
+* html #footer {
+	width: expression(
+	(document.compatMode && document.compatMode == 'CSS1Compat') ?
+	(document.documentElement.clientWidth < 1000 ? "1000px" :
+	(document.documentElement.clientWidth > 1400 ? "1400px" : "auto")) :
+	(document.body.clientWidth > 1000 ? "1000px" :
+	(document.body.clientWidth < 1400 ? "1400px" : "auto")));
+}
+
+html .tm-inner{display:inline; zoom:1;}
+html .mini-carousel .carousel{height:150px;}
+html .btn{margin-left:-3px;}
+html .sm li.active{width:240px !important;}
+html .serv_fotos{overflow:hidden; padding-bottom:25px;}
+html .cw_2 h2{overflow:hidden;}
+html .articles_list li img{position:absolute;}
+html .articles_list li p{padding-left:150px; width:75%;}
+html .sc_list li a{line-height:30px;}
+html .spec{width:250px;}
+html .cc_2 .b-green{width:270px;}
+html .item_wrapper img{margin-top:20px;}
+html .other_gal .og_el{margin:25px 0;}
+
+
+

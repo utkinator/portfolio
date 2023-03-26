@@ -1,6 +1,6 @@
 # Vitaliy Utkin - Web Developer
 
-###### utkin.vitaliy@gmail.com • [LinkedIn](www.linkedin.com/in/vitaliyutkin) • [Portfolio](https://utkinator.github.io/portfolio/) • [Resume](./resume/Vitaliy%20Utkin%20-%20Web%20Developer%20-%20Resume.pdf)
+###### utkin.vitaliy@gmail.com • [LinkedIn](www.linkedin.com/in/vitaliyutkin) • [Portfolio](https://utkinator.github.io/portfolio/) • [Resume](./resume/Vitaliy%20Utkin%20-%20Senior%20Frontend%20Developer%20-%20Resume.pdf)
 
 ---
 
